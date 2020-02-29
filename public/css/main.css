@@ -1,0 +1,206 @@
+
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|Pacifico|Press+Start+2P&display=swap');
+
+/* Navigation*/
+
+a{
+   text-decoration: none;
+}
+
+body{
+   max-width: 1600px;
+   margin: auto;
+   background: #BFBFBF;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+button {
+   width: 80px;
+   background: #22F2DD;
+   border: 0;
+   padding: 10px 20px;
+ }
+
+ button:hover{
+    cursor: pointer;
+ }
+
+.menu ul {
+   display: grid;
+   padding: 0;
+   margin: 20px 0;
+   list-style: none;
+   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+   grid-gap: 10px;
+}
+
+.menu a {
+   background: #BFBFBF;
+   display: block;
+   font-family: 'Press Start 2P', sans-serif;
+   text-decoration: none;
+   padding: 10px;
+   text-align: center;
+   color: #F2F2F2;
+   text-transform: uppercase;
+   font-size: 20px;
+}
+
+.menu{
+   perspective: 800px;
+}
+
+#menu-list{
+   max-height: 0;
+   overflow: hidden;
+   transform: rotateX(90deg);
+   transition: all 0.5s;
+}
+
+
+[aria-expanded="true"] ~ #menu-list {
+   display: grid;
+   transform: rotateX(0deg);
+   max-height: 500px;
+
+ }
+
+ .open, .close{
+    font-size: 1.5rem;
+ }
+
+ .menu ul li a:hover{
+    text-align: center;
+   transition: all .2s ease-in;
+   background-color: #22F2DD;
+   font-family: 'Press Start 2P', sans-serif;
+   -webkit-text-stroke: 1px #F2D541;
+   color: #F2D541;
+   text-shadow: 
+      -1px -1px 0 #F2D541,
+      1px -1px 0 #F2D541,
+      -1px 1px 0 #F2D541;
+ }
+
+ [aria-expanded="false"] .close {
+   display: none;
+ }
+
+ [aria-expanded="true"] .close {
+   display: inline-block;
+ }
+
+ [aria-expanded="true"] .open {
+   display: none;
+ }
+
+ /** Footer */
+footer{
+   padding-top: 15vh;
+   position: relative;
+   height: 100px;
+   margin-top: -100px;
+   clear: both;
+}
+
+.s-m{
+   width: 100%;
+   height: auto;
+   margin: auto;
+   text-align: center;
+}
+
+.s-m a{
+   display: inline-flex;
+   width: 40px;
+   height: 40px;
+   background: #121D26;
+   color: #EBEDF2;
+   margin: 0 6px;
+   border-radius: 50%;
+   justify-content: center;
+   align-items: center;
+   transition: 0.4s;
+   font-size: 20px;
+}
+
+.s-m{
+   margin: 10px;
+}
+
+.s-m a i{
+   transition: 0.4s all;
+}
+
+.s-m a:hover{
+   transform: scale(1.3);
+}
+
+.s-m a:hover > i{
+   transform: scale(1.2) rotate(45deg);
+}
+
+.footer-menu-one{
+   width: 100%;
+   height: auto;
+   margin: auto;
+   margin-top: 20px;
+}
+
+.footer-menu-one ul{
+   margin: 0px;
+   padding: 0px;
+   text-align: center;
+}
+
+.footer-menu-one ul li{
+   display: inline-block;
+   margin: 0px 15px;
+}
+
+.footer-menu-one ul li a{
+   font-family: 'PT Mono', sans-serif;
+   font-size: 18px;
+   font-weight: 600;
+   color: #0D0D0D;
+   
+}
+
+.footer-main-div{
+   min-height: 100px;
+   background: #BFBFBF;
+   padding: 5px;
+}
+
+.footer-menu-one ul li:hover{
+   transform: scale(1.10);
+}
+
+.footer-menu-one ul li{
+   transition: 0.4s all;
+
+   /* at the end of the efect makes an extra movement correct*/
+}
+
+
+
+#facebook:hover{
+   background: #3B5998;
+}
+
+#instagram:hover{
+   background: #e4405f;
+}
+
+#twitter:hover{
+   background: #55acee;
+}
+
+#youtube:hover{
+   background: #E62117;
+}
+
+.footer-menu-one ul li a:hover{
+   color: #22F2DD;
+}

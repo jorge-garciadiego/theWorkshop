@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/products.css">
+
+<div class="wrapper">
+      <div class="top">
+         <header class="hero">
+            <h1 id="workshopTitle">the Workshop</h1>
+            <p class="txt-type"></p>
+         </header>
+
+         <ul class="icons">
+            <li class="icon"><a href=""><i class="fas fa-heart"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-paint-brush"></i></a></li>
+            <li class="iconMenu" id="toMenu" data='["Menu"]'><a href="/"><i class="fas fa-dice-d6"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-brain"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-pencil-alt"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-lightbulb"></i></a></li>
+            <li class="iconMenu to " id="toSignUP" data='["Sign Up"]'><a href="javascript:openSignUp()"><i class="fas fa-user-plus"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-pencil-alt"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-ruler"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-pen-alt"></i></a></li>
+            <li class="iconMenu" id="toLogin" data='["Login"]'><a href="javascript:openLogin()"><i class="fas fa-user-astronaut"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-brush"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-cut"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-highlighter"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-eraser"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-ruler-combined"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-child"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-icons"></i></a></li>
+            <li class="iconMenu" id="toProducts" data='["Products"]' ><a href="/products"><i class="fas fa-store"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-leaf"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-smile"></i></a></li>     
+            <li class="icon"><a href=""><i class="fas fa-stamp"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-swatchbook"></i></a></li>
+            <li class="icon"><a href=""><i class="fas fa-tint"></i></a></li>
+            <li class="iconMenu" id="toContact" data='["Contact Us"]'><a href=""><i class="fas fa-envelope"></i></a></li>
+
+         </ul>
+
+      </div>
+
+      <div class="title">
+         <h2>Best Sellers</h2>
+      </div>
+      
+      <section class="productsGrid">
+         
+         {{#each bestSellers}}
+            <div class="singleBox">
+               <img src="{{this.img}}" alt="">
+      
+            <div class="boxContent">
+               <div class="itemTitle bsTitle">
+                  <h3 class="titleName">{{this.title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{this.cat}}</h3>
+               </div>
+                
+               <div class="productData">
+                  <p>Artist: <a class="dataArt" href="#">{{this.artist}}</a></p>
+                  <p>Price: ${{this.price}}</p>
+               </div>
+
+               <a class="aProduct btn" href="#">Add to Cart</a>
+               
+            </div>
+         
+            </div>
+         {{/each}}
+      </section>
+
+       <div class="title">
+         <h2>Categories</h2>
+      </div>
+
+      <section class="categories">
+         <ul class="boxWrapper">
+            {{#each categories}}
+               <li>
+                  <div class="box img-1" style={{colour}}>
+                     <a href="#">
+                        <div class="info">
+                           <h3 class="name">{{title}}</h3>
+                           <p class="catDesc">{{description}}</p>
+                        </div>
+                     </a>
+                  </div>
+               </li>
+            {{/each}}
+         </ul>
+      </section>
+   
+   <script src="/js/mainNav.js"></script>
+   </div>

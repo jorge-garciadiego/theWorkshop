@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/css/ourProducts.css">
+
+<section class="products">
+
+   <div class="container">
+      <div class="head">
+         <h1>{{heading}}</h1>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus sapiente explicabo architecto excepturi, ipsam provident at eaque magnam nemo? Consectetur?
+         </p>
+      </div>
+
+      <main class="productsGrid">
+         {{#each products}}
+            <div class="singleBox">
+               <img src="{{this.img}}" alt="">
+      
+            <div class="boxContent">
+               <div class="itemTitle bsTitle">
+                  <h3 class="titleName">{{this.title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{this.cat}}</h3>
+               </div>
+                
+               <div class="productData">
+                  <p>Artist: <a class="dataArt" href="#">{{this.artist}}</a></p>
+                  <p>Price: ${{this.price}}</p>
+               </div>
+
+               <a class="aProduct btn" href="#">Add to Cart</a>
+               
+            </div>
+         
+            </div>
+         {{/each}}
+      </main>
+   </div>
+
+</section>

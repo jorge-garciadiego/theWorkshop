@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+   <link rel="stylesheet" href="/css/main.css">
+   <link rel="stylesheet" href="/css/forms.css">
+   <title>Document</title>
+</head>
+<body>
+
+   <nav class="menu">
+      <button aria-expanded="false" aria-controls="menu-list">
+        <span class="open">☰</span>
+        <span class="close">×</span>
+      </button>
+      <ul id="menu-list">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a class="toLogin" href="">Login</a>
+        </li>
+        <li>
+          <a class="toSignUp" href="javascript:openSignUp()">Sign Up</a>
+        </li>
+        <li>
+          <a href="">Products</a>
+        </li>
+        <li>
+          <a href="">Contact Us</a>
+        </li>
+      </ul>
+    </nav>
+
+      <!-- Temporal this shows the error messages -->
+
+      {{#each errorMessages}}
+         <div>{{this}}</div>
+      {{/each}}
+
+      <div id="signUpForm" class="formUser">
+      <span class="closeBtn" onclick="closeForm()" title="Close"> &#215 </span>
+         <div class="formWrap">
+            <h2 class="formTitle">Sign Up Here</h2>
+            <form action="/" method="POST">
+               <input type="text" class="input" id="firstName" name="firstName" placeholder="Enter First Name">
+               <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter Last Name">
+               <input type="text" class="input" id="mailPhone" name="mailPhone" placeholder="Enter Email or Mobile Number">
+               <input type="password" class="input" id="password" name="password" placeholder="Enter Password">
+               <input type="password" class="input" id="rePassword" name="rePassword" placeholder="Re-enter Password">
+               <input class="submitForm" type="submit" value="Join Now">
+            </form>
+         </div>
+      </div>
+
+      <div id="loginForm" class="formUser">
+         <span class="closeBtn" onclick="closeLogin()" title="Close"> &#215 </span>
+            <div class="formWrap">
+               <h2 class="formTitle">Login</h2>
+               <form action="/" method="POST">
+                  <input type="text" class="input" id="username" name="username" placeholder="Username">
+                  <input type="password" class="input" id="loginPass" name="loginPass" placeholder="Password">
+                  <input class="submitForm" type="submit" value="Login">
+               </form>
+            </div>
+      </div>
+
+   <main>
+      {{{body}}}
+   </main>
+
+   <footer>
+         <div class="footer-main-div">
+
+            <div class="s-m">
+               <a id="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+               <a id="instagram" href="#"><i class="fab fa-instagram"></i></a>
+               <a id="twitter" href="#"><i class="fab fa-twitter"></i></a>
+               <a id="youtube" href="#"><i class="fab fa-youtube"></i></a>
+            </div>   
+
+            <div class="footer-menu-one">
+               <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="login">Login</a></li>
+                  <li><a href="javascript:openSignUp()">Sign Up</a></li>
+                  <li><a href="products">Products</a></li>
+                  <li><a href="contact">Sign Up</a></li>
+               </ul>
+            </div>
+         </div>
+
+      </footer>
+
+   <script src="/js/menuButton.js"></script>
+   <script src="/js/form.js"></script>
+</body>
+</html>
