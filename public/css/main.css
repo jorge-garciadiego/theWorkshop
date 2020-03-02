@@ -8,7 +8,7 @@ a{
 }
 
 body{
-   max-width: 1600px;
+   max-width: 95vw;
    margin: auto;
    background: #BFBFBF;
    padding: 0;
@@ -17,7 +17,7 @@ body{
 
 button {
    width: 80px;
-   background: #22F2DD;
+   background: #F26B6B;
    border: 0;
    padding: 10px 20px;
  }
@@ -36,7 +36,7 @@ button {
 }
 
 .menu a {
-   background: #BFBFBF;
+   background: #F29979;
    display: block;
    font-family: 'Press Start 2P', sans-serif;
    text-decoration: none;

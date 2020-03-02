@@ -11,6 +11,11 @@ const exphbs = require("express-handlebars");
 const productModel = require("./model/products");
 const bodyparser = require("body-parser");
 
+//import session
+const expSession = require("express-session");
+//import Validator
+const expValidator = require("express-validator");
+
 //This tells express to get up our template engine has handlebars
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -20,6 +25,12 @@ app.use(express.static('public'));
 
 //Tells express to make form data available via req.body in every request
 app.use(bodyparser.urlencoded({extended:false}));
+
+//Apply validator
+app.use(expValidator());
+
+//Apply session
+app.use(expSession({secret: 'max', saveUninitialized: false, resave: false}));
 
 //Home Route
 app.get("/", (req, res)=>{
