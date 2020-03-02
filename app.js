@@ -104,7 +104,7 @@ app.get("/products", (req,res) => {
    });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3500;
 
 app.listen(PORT, ()=>{
 
