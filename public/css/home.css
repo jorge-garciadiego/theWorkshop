@@ -80,7 +80,20 @@ body{
    transition: ease-in-out .2s;
 }
 
+#toMenu{
+   font-size: 40px;
+   color: #0D0D0D;
+   transition: ease-in-out .2s;
+   cursor: pointer;
+}
+
 .iconMenu a i:hover{
+   transform: scale(1.3);
+   color: #23D9B7;
+}
+
+
+#toMenu:hover{
    transform: scale(1.3);
    color: #23D9B7;
 }

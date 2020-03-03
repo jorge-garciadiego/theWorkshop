@@ -10,3 +10,7 @@ function toogleNav({target}){
 }
 
 navButton.addEventListener('click', toogleNav);
+
+const openMenu = document.querySelector('#toMenu');
+
+openMenu.addEventListener('click', toogleNav);
