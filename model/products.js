@@ -26,20 +26,20 @@ const products=
 
         
          // this is the simulation of a Categories table in the database
-         this.categories.push({title: 'Accesories', description: 'Amazing crafted articles', colour: "background:#F2ACBF"});
+         this.categories.push({title: 'Accesories', description: 'Amazing crafted articles', colour: "background:#CFFFF1"});
 
-         this.categories.push({title: 'Boutique', description: 'Incredible clothes for you', colour: "background:#96CCD9"});
+         this.categories.push({title: 'Boutique', description: 'Incredible clothes for you', colour: "background:#BDD8E8"});
 
-         this.categories.push({title: 'Decor', description: 'Awesome ideas to improve your house', colour: "background:#96CCD9"});
+         this.categories.push({title: 'Decor', description: 'Ideas to improve your house', colour: "background:#DDDCFF"});
 
-         this.categories.push({title: 'Home', description: 'Beautiful creations that make your life easy', colour: "background:#F2ACBF"});
+         this.categories.push({title: 'Home', description: 'Beautiful creations that make your life easy', colour: "background:#DDC4E8"});
 
     },
 
     getAllProducts()
     {
-        console.log(`Listed all the products holded in fakeDB`);
-        console.log(this.fakeDB);
+       //console.log(`Listed all the products holded in fakeDB`);
+        //console.log(this.fakeDB);
         return this.fakeDB;
     },
 
@@ -52,16 +52,16 @@ const products=
             }
         }
 
-        console.log(`Here the best seller products mined from fakeDB`);
-        console.log(bestSellers);
+        //console.log(`Here the best seller products mined from fakeDB`);
+        //console.log(bestSellers);
 
         return bestSellers;
     },
 
     getCategories(){
 
-        console.log(`These are the categories for now:`)
-        console.log(this.categories);
+        //console.log(`These are the categories for now:`)
+        //console.log(this.categories);
 
         return this.categories;
         

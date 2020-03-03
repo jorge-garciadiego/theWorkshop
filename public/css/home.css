@@ -1,7 +1,11 @@
 
 body{
-   background: #262626;
+   background: #EDE9F2;
    margin: auto;
+}
+
+.wrapper{
+   background: #EDE9F2;
 }
 
 
@@ -10,7 +14,7 @@ body{
    grid-template-areas: 
       "hero icons"
       "hero icons";
-   background-image: linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("/img/hero.jpg");
+   background-image: linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url("/img/hero.jpg");
    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
    padding: 50px;
    justify-content: space-between;
@@ -28,17 +32,13 @@ body{
 }
 
 .hero > *{
-   background: #F2D541;
+   background: #D9A3A3;
 }
 
 #workshopTitle{
    font-family: 'Pacifico', sans-serif;
-   -webkit-text-stroke: 1px black;
    color: white;
-   text-shadow: 
-      -1px -1px 0 #F2D541,
-      1px -1px 0 #F2D541,
-      -1px 1px 0 #F2D541;
+
 }
 
 .icons{
@@ -64,7 +64,8 @@ body{
 }
 
 .icon a, .icon a i{
-   color: #0D0D0D;
+   color: #CFFFF1;
+   opacity: .95;
    font-size: 40px;
 }
 
@@ -75,12 +76,13 @@ body{
 
 .iconMenu a i{
    font-size: 40px;
-   color: #22F2DD;
+   color: #0D0D0D;
    transition: ease-in-out .2s;
 }
 
 .iconMenu a i:hover{
    transform: scale(1.3);
+   color: #23D9B7;
 }
 
 .txt-type{
@@ -88,13 +90,7 @@ body{
    color: #f2f2f2;
    text-align: center;
    transition: all .2s ease-in;
-   font-family: 'Press Start 2P', sans-serif;
-   -webkit-text-stroke: 1px #262626;
-   color: #f2f2f2;
-   text-shadow: 
-      -1px -1px 0 #F2D541,
-      1px -1px 0 #F2D541,
-      -1px 1px 0 #F2D541;
+   font-family: 'Pacifico', sans-serif;
 }
 
 /* Titles*/
@@ -108,28 +104,23 @@ body{
 
 .title h2{
    margin: 10px;
-   font-family: 'Press Start 2P', sans-serif;
-   -webkit-text-stroke: 1px #262626;
-   color: #f2f2f2;
-   text-shadow: 
-      -1px -1px 0 #F2D541,
-      1px -1px 0 #F2D541,
-      -1px 1px 0 #F2D541;
+   font-family: 'Pacifico', sans-serif; 
 }
 
 .title::before, .title::after{
    display: block;
    content: '';
    height: 10px;
-   background: linear-gradient(to left, #22F2DD, transparent);
+   background: linear-gradient(to left, #A66D78, transparent);
 }
 
 .title::after{
-   background: linear-gradient(to right, #22F2DD, transparent);
+   background: linear-gradient(to right, #A66D78, transparent);
 }
 
 .title > h2{
-   background: #F2D541;
+   background: #A66D78;
+   color: #fff;
 }
 
 /* Categories Grid*/
@@ -180,7 +171,7 @@ body{
  .name{
    font-family: 'Pacifico', cursive;
    font-weight: 400;
-   color: #fff;
+   color: #595956;
    font-size: 42px;
    margin: 0 30px;
    padding: 100px 0 0 0;
@@ -188,8 +179,8 @@ body{
  }
 
  .catDesc{
-   color: #fff;
-   font-family: 'PT Mono', sans-serif;
+   font-family: 'Architects Daughter', cursive;
+   color: #595956;
    font-weight: bolder;
  }
 

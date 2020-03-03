@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css?family=PT+Mono|Pacifico|Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Architects+Daughter|Pacifico&display=swap');
 
 /* Navigation*/
 
@@ -10,14 +10,14 @@ a{
 body{
    max-width: 95vw;
    margin: auto;
-   background: #BFBFBF;
+   background: #EDE9F2;
    padding: 0;
    box-sizing: border-box;
 }
 
 button {
    width: 80px;
-   background: #F26B6B;
+   background: #A66D78;
    border: 0;
    padding: 10px 20px;
  }
@@ -36,14 +36,13 @@ button {
 }
 
 .menu a {
-   background: #F29979;
+   background: #A66D78;
    display: block;
-   font-family: 'Press Start 2P', sans-serif;
+   font-family: 'Pacifico', sans-serif;
    text-decoration: none;
    padding: 10px;
    text-align: center;
    color: #F2F2F2;
-   text-transform: uppercase;
    font-size: 20px;
 }
 
@@ -73,14 +72,11 @@ button {
  .menu ul li a:hover{
     text-align: center;
    transition: all .2s ease-in;
-   background-color: #22F2DD;
-   font-family: 'Press Start 2P', sans-serif;
+   background-color: #85A687;
+   font-family: 'Pacifico', sans-serif;
    -webkit-text-stroke: 1px #F2D541;
-   color: #F2D541;
-   text-shadow: 
-      -1px -1px 0 #F2D541,
-      1px -1px 0 #F2D541,
-      -1px 1px 0 #F2D541;
+   color: #FFE894;
+ 
  }
 
  [aria-expanded="false"] .close {
@@ -115,8 +111,8 @@ footer{
    display: inline-flex;
    width: 40px;
    height: 40px;
-   background: #121D26;
-   color: #EBEDF2;
+   background: #DED0F2;
+   color: #595956;
    margin: 0 6px;
    border-radius: 50%;
    justify-content: center;
@@ -160,16 +156,16 @@ footer{
 }
 
 .footer-menu-one ul li a{
-   font-family: 'PT Mono', sans-serif;
+   font-family: 'Architects Daughter', cursive;
    font-size: 18px;
-   font-weight: 600;
-   color: #0D0D0D;
+   font-weight: bolder;
+   color: #262626;
    
 }
 
 .footer-main-div{
    min-height: 100px;
-   background: #BFBFBF;
+   background: #A66D78;
    padding: 5px;
 }
 
@@ -183,24 +179,26 @@ footer{
    /* at the end of the efect makes an extra movement correct*/
 }
 
-
-
 #facebook:hover{
    background: #3B5998;
+   color: #EDE9F2;
 }
 
 #instagram:hover{
    background: #e4405f;
+   color: #EDE9F2;
 }
 
 #twitter:hover{
    background: #55acee;
+   color: #EDE9F2;
 }
 
 #youtube:hover{
    background: #E62117;
+   color: #EDE9F2;
 }
 
 .footer-menu-one ul li a:hover{
-   color: #22F2DD;
+   color: #EDE9F2;
 }

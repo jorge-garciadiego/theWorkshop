@@ -6,10 +6,10 @@
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
    <link rel="stylesheet" href="/css/main.css">
    <link rel="stylesheet" href="/css/forms.css">
-   <title>Document</title>
+   <title>{{title}}</title>
 </head>
 <body>
-
+   
    <nav class="menu">
       <button aria-expanded="false" aria-controls="menu-list">
         <span class="open">☰</span>
@@ -26,7 +26,7 @@
           <a class="toSignUp" href="javascript:openSignUp()">Sign Up</a>
         </li>
         <li>
-          <a href="">Products</a>
+          <a href="/products">Products</a>
         </li>
         <li>
           <a href="">Contact Us</a>
@@ -37,7 +37,7 @@
       <!-- Temporal this shows the error messages -->
 
       {{#each errorMessages}}
-         <div>{{this}}</div>
+         <div>{{this.}}</div>
       {{/each}}
 
       <div id="signUpForm" class="formUser">
@@ -46,7 +46,8 @@
             <h2 class="formTitle">Sign Up Here</h2>
             <form action="/" method="POST">
                <input type="text" class="input" id="firstName" name="firstName" placeholder="Enter First Name">
-               <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter Last Name">
+               <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter Last 
+               Name">
                <input type="text" class="input" id="mailPhone" name="mailPhone" placeholder="Enter Email or Mobile Number">
                <input type="password" class="input" id="password" name="password" placeholder="Enter Password">
                <input type="password" class="input" id="rePassword" name="rePassword" placeholder="Re-enter Password">
@@ -87,7 +88,7 @@
                   <li><a href="javascript:openLogin()">Login</a></li>
                   <li><a href="javascript:openSignUp()">Sign Up</a></li>
                   <li><a href="products">Products</a></li>
-                  <li><a href="contact">Sign Up</a></li>
+                  <li><a href="">Contact Us</a></li>
                </ul>
             </div>
          </div>

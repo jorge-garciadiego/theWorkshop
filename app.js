@@ -23,9 +23,8 @@ app.use(bodyparser.urlencoded({extended:false}));
 
 //Home Route
 app.get("/", (req, res)=>{
-   console.log("you are at Home");
    res.render("home", {
-      title: "Home",
+      title: "the Workshop",
       bestSellers: productModel.getBestSellers(),
       categories: productModel.getCategories()
    });
@@ -35,38 +34,39 @@ app.post("/", (req, res) =>{
    const errors = [];
 
    const patterns = {
-      email: /^([a-z\d\.-]+)@([a-z\d]+)\.(a-z{2,8})(\.[a-z]{2,8})?$/
+      email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
    }
 
    if (req.body.firstName=="") {
-      errors.push("You must eneter your first Name");
+      errors.push({firstName:"You must eneter your first Name"});
    }
 
    if (req.body.lastName==""){
-      errors.push("You must enter your last Name");
+      errors.push({lastName:"You must enter your last Name"});
    }
 
-   if (req.body.mailPhone==""){
-      errors.push("You must eneter a valid email or phone number");
+   if (!patterns.email.test(req.body.mailPhone)){
+      console.log(patterns.email.test(req.body.mailPhone));
+      errors.push({email:"You must eneter a valid email or phone number"});
    }
 
    if (req.body.password==""){
-      errors.push("You must enter a password");
+      errors.push({password:"You must enter a password"});
    }
 
    if (req.body.rePassword==""){
-      errors.push("You must re enter the password");
+      errors.push({rePassword:"You must re enter the password"});
    }
 
 
    //Validating login
 
    if (req.body.username=="") {
-      errors.push("Must enter Your username");
+      errors.push({username:"Must enter Your username"});
    }
 
    if (req.body.loginPass=="") {
-      errors.push("Must enter Your password");
+      errors.push({password:"Must enter Your password"});
    }
 
    //If validation fails
@@ -97,7 +97,7 @@ app.get("/products", (req,res) => {
    });
 });
 
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, ()=>{
 
