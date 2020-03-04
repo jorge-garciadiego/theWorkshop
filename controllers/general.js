@@ -5,6 +5,7 @@ const productModel = require("../model/product");
 
 //Home Route
 router.get("/", (req, res)=>{
+
    res.render("general/home", {
       title: "the Workshop",
       bestSellers: productModel.getBestSellers(),
@@ -162,6 +163,48 @@ router.post("/login", (req, res) => {
       res.redirect("general/");
       console.log("Login successful!!");
    }
+})
+
+//Contact-us Route
+router.get("/contact-us", (req, res)=>{
+
+   res.render("general/contact-us", {
+      title: "Contact Us"
+   });
+
+
+});
+
+router.post("/contact-us", (req, res)=>{
+
+   const {firstName, lastName, email, subject, message} = req.body;
+
+
+   // using Twilio SendGrid's v3 Node.js Library
+   // https://github.com/sendgrid/sendgrid-nodejs
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(`${process.env.SEND_GRID_API_KEY}`);
+      const msg = {
+      to: `jorge.garciadiego@gmail.com`,
+      from: `${email}`,
+      subject: 'the Workshop message submit',
+      html: 
+      `Visitor's ${firstName} ${lastName} <br>
+      Email address: ${email}; <br>
+      Subject: ${subject}: <br>
+      Message; [${message}]
+      `,
+      };
+
+      //Asynchornous operation
+      sgMail.send(msg)
+      .then(()=>{
+         res.redirect("/");
+      })
+      .catch(err=>{
+         console.log(`Error ${err}`);
+      })
+
 })
 
 module.exports = router;

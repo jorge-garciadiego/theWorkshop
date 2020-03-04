@@ -6,7 +6,7 @@ const productModel = require("../model/product");
 //Products Route
 router.get("/products", (req, res)=>{
    res.render("products/products", {
-      title: "Our Products",
+      title: "Products",
       heading: "Our Products",
       products: productModel.getAllProducts()
       

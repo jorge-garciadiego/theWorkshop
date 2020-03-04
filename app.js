@@ -10,6 +10,9 @@ const exphbs = require("express-handlebars");
 //Import bodyparser
 const bodyparser = require("body-parser");
 
+//load environmet variable file
+require('dotenv').config({path:"./config/keys.env"});
+
 //Handlebars Middleware (tells express to set Handlebars as the template engine)
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -29,10 +32,10 @@ app.use("/", generalController);
 app.use("/", productController);
 
 //Setting up the PORT
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, ()=>{
 
-   console.log(`byHand Server up and running on Port ${PORT}`);
+   console.log(`the Workshop Server up and running on Port ${PORT}`);
 
 })
