@@ -32,10 +32,12 @@ img{
 .productsGrid{
    display: grid;
    padding-bottom: 20px;
-   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+   grid-template-rows: repeat(auto-fit, minmax(200px, 350px));
    grid-gap: 30px;
    margin: 30px 15px 0px 15px;
    text-align: center;
+   justify-content: center;
 }
 
 .head{

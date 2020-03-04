@@ -10,6 +10,7 @@ body{
 
 
 .top{
+   max-width: 70vw;
    display: grid;
    grid-template-areas: 
       "hero icons"
@@ -18,6 +19,7 @@ body{
    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
    padding: 50px;
    justify-content: space-between;
+   margin: auto;  
 }
 
 .hero{
@@ -138,6 +140,11 @@ body{
 
 /* Categories Grid*/
 
+.categories{
+   display: flex;
+   justify-content: center;
+}
+
 .boxWrapper {
    padding-top: 10px;
    justify-content: center;
@@ -216,9 +223,7 @@ body{
    }
 
    .top{
-      grid-template-areas: 
-        "hero"
-        "icons";
+      grid-template-columns: auto;
    }
 
    .icon{
