@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{{title}}</title>
+</head>
+<body>
+   <div class="signUpWrapper">
+      
+      <h1>Welcome</h1>
+
+      <div id="signUpForm" class="formUser">
+         <div class="formWrap">
+            <h2 class="formTitle">Sign Up Here</h2>
+            <form action="/signup" method="POST">
+               <input type="text" class="input" id="firstName" name="firstName" placeholder="Enter First Name">
+               <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter Last Name">
+               <input type="text" class="input" id="mailPhone" name="mailPhone" placeholder="Enter Email or Mobile Number">
+               <input type="password" class="input" id="password" name="password" placeholder="Enter Password">
+               <input type="password" class="input" id="rePassword" name="rePassword" placeholder="Re-enter Password">
+
+               {{#each errorMessages}}
+                  <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
+               {{/each}}
+
+               <input class="submitForm" type="submit" value="Join Now">
+            </form>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

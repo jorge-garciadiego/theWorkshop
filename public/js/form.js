@@ -1,4 +1,4 @@
-
+/*
 function openSignUp(){
    document.querySelector('#signUpForm').style.display = "flex";
 
@@ -15,3 +15,4 @@ function openLogin(){
 function closeLogin(){
    document.querySelector('#loginForm').style.display = "none";
 }
+*/

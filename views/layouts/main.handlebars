@@ -20,10 +20,10 @@
           <a href="/">Home</a>
         </li>
         <li>
-          <a class="toLogin" href="javascript:openLogin()">Login</a>
+          <a class="toSignUp" href="/login">Login</a> <!--"javascript:openLogin()"--> 
         </li>
         <li>
-          <a class="toSignUp" href="javascript:openSignUp()">Sign Up</a>
+          <a class="toSignUp" href="/signup">Sign Up</a>
         </li>
         <li>
           <a href="/products">Products</a>
@@ -34,12 +34,9 @@
       </ul>
     </nav>
 
-      <!-- Temporal this shows the error messages -->
 
-      {{#each errorMessages}}
-         <div>{{this.}}</div>
-      {{/each}}
-
+      <!-- Temporal unable
+      
       <div id="signUpForm" class="formUser">
       <span class="closeBtn" onclick="closeForm()" title="Close"> &#215 </span>
          <div class="formWrap">
@@ -67,6 +64,7 @@
                </form>
             </div>
       </div>
+    -->
 
    <main>
       {{{body}}}
