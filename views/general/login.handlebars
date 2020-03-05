@@ -10,14 +10,18 @@
        <div id="loginForm" class="formUser">
             <div class="formWrap">
                <h2 class="formTitle">Login</h2>
-               <form action="/login" method="POST">
-                  <input type="text" class="input" id="username" name="emailPhone" placeholder="Email / Phone number">
+               <form class="userForm" action="/login" method="POST">
+                  <input type="text" class="input" id="username" name="emailPhone" placeholder="Email / Phone number" value="{{this.actualMail}}">
+                  {{#if this.e_mail}} <br><span class="errorMessage">{{this.e_mail}}</span> {{/if}}
                   <input type="password" class="input" id="loginPass" name="loginPass" placeholder="Password">
+                  {{#if this.p_pass}} <br><span class="errorMessage">{{this.p_pass}}</span> {{/if}}
 
-                  {{#each errorMessages}}
-                     <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
-                  {{/each}}
-                  <input class="submitForm" type="submit" value="Login">
+                  <div class="errosWrap">
+                     {{#each errorMessages}}
+                        <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
+                     {{/each}}
+                  </div>
+                  <input class="submitForm" id="submitBt" type="submit" value="Login">
                </form>
             </div>
       </div>

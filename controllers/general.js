@@ -79,50 +79,88 @@ app.post("/", (req, res) =>{
 //Sign Up Route
 router.get("/signup", (req, res)=>{
    res.render("general/signup", {
-      title: "Welcome",
+      title: "Welcome"
    });
 });
 
 // Post Route for Sign Up
 router.post("/signup", (req, res)=>{
-   const errors = [];
+  const errors = [];
+
+   const{firstName, lastName, mailPhone, password, rePassword} = req.body;
+
+   let valid = true;
+   let fName = [];
+   let lname = [];
+   let mail = [];
+   let pass = [];
+   let repass = [];
+
+   let firstLabel;
+   let lastLabel;
+   let mailLabel;
 
    //Object with the javascript REGEX patterns
    const patterns = {
+      name: /^[a-zA-Z]+$/,
       email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       phoneNum: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
       password: /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/
    }
 
-   if (req.body.firstName=="") {
+   if (!patterns.name.test(firstName)) {
       errors.push({description: 'You must eneter your first Name'});
+      fName = `Invalid First Name`;
+      valid = false;
+   } else {
+      firstLabel = firstName;
    }
 
-   if (req.body.lastName==""){
+   if (!patterns.name.test(lastName)){
       errors.push({description: 'You must eneter your last Name'});
+      lname = `Invalid Last Name`;
+      valid = false;
+   } else {
+      lastLabel = lastName;
    }
 
-   if (!patterns.email.test(req.body.mailPhone) && !patterns.phoneNum.test(req.body.mailPhone)){
-      errors.push({description: "You must eneter a valid email or phone number"});
+   if (!patterns.email.test(mailPhone) && !patterns.phoneNum.test(mailPhone)){
+      errors.push({description: "Email must be from a valid domain / phone (10 digs)"});
+      mail = `Ups, you must enter a valid email / phone number`;
+      valid = false;
+   } else {
+      mailLabel = mailPhone;
    }
 
-   if (!patterns.password.test(req.body.password)){
-      errors.push({description: "Invalid password"});
+   if (!patterns.password.test(password)){
+      errors.push({description: "Password: at least 8 char, 1 num, 1 lowercase, 1 uppercase, 1 special character => !@#$%^&* "});
+      pass = `Invalid Password`;
+      valid = false;
    }
 
-   if (!patterns.password.test(req.body.rePassword) && req.body.password != req.body.rePassword){
+   if (!patterns.password.test(rePassword) && password != rePassword){
       errors.push({description: "password re-entered invalid"});
+      repass = `Password re-entered doesn't match`;
+      valid = false;
    }
 
    // Validation array
 
-   if (errors.length > 0) {
+   if (valid == false) {
       res.render("general/signup", {
          title: "Welcome",
-         errorMessages: errors
+         errorMessages: errors,
+         first: fName,
+         last: lname,
+         e_mail: mail,
+         p_pass: pass,
+         p_repass: repass,
+         actualFirst: firstLabel,
+         actualLast: lastLabel,
+         actualMail: mailLabel
       });
    }else{
-      res.redirect("general/signup");
+      res.redirect("/welcome");
       console.log("Sign Up successful!");
    }
 
@@ -137,7 +175,16 @@ router.get("/login", (req,res)=>{
 
 //Login Post Route
 router.post("/login", (req, res) => {
+
    const loginErrors = [];
+
+   let valid = true;
+   let mail = [];
+   let pass = [];
+
+   let mailLabel;
+
+   const {emailPhone, loginPass} = req.body;
 
    //Object with the javascript REGEX patterns
    const patterns = {
@@ -146,21 +193,32 @@ router.post("/login", (req, res) => {
       password: /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/
    }
 
-   if (!patterns.email.test(req.body.emailPhone) && !patterns.phoneNum.test(req.body.emailPhone)) {
-      loginErrors.push({description: "Invalid Email / Phone number"});
-   }
-
-   if (!patterns.password.test(req.body.loginPass)) {
-      loginErrors.push({description: "Invalid password"});
-   }
-
-   if (loginErrors.length > 0) {
-      res.render("general/login", {
-         title: "Login",
-         errorMessages: loginErrors
-      });
+   if (!patterns.email.test(emailPhone) && !patterns.phoneNum.test(emailPhone)){
+      loginErrors.push({description: "Email must be from a valid domain / phone (10 digs)"});
+      mail = `Ups, you must enter a valid email / phone number`;
+      valid = false;
    } else {
-      res.redirect("general/");
+      mailLabel = emailPhone;
+   }
+
+   if (!patterns.password.test(loginPass)){
+      loginErrors.push({description: "Password: at least 8 char, 1 num, 1 lowercase, 1 uppercase, 1 special character => !@#$%^&* "});
+      pass = `Invalid Password`;
+      valid = false;
+   }
+
+  // Validation array
+
+  if (valid == false) {
+   res.render("general/login", {
+      title: "Login",
+      errorMessages: loginErrors,
+      e_mail: mail,
+      p_pass: pass,
+      actualMail: mailLabel
+   });
+   } else {
+      res.redirect("/welcome");
       console.log("Login successful!!");
    }
 })
@@ -176,10 +234,72 @@ router.get("/contact-us", (req, res)=>{
 });
 
 router.post("/contact-us", (req, res)=>{
+   const errors = [];
 
    const {firstName, lastName, email, subject, message} = req.body;
 
+   let valid = true;
+   let fName = [];
+   let lname = [];
+   let mail = [];
+   let messg = [];
 
+   let firstLabel;
+   let lastLabel;
+   let mailLabel;
+
+   const patterns = {
+      name: /^[a-zA-Z]+$/,
+      email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      mess: /[A-Za-z]+$/
+   }
+
+   if (!patterns.name.test(firstName)) {
+      errors.push({description: 'You must eneter your first Name'});
+      fName = `Invalid First Name`;
+      valid = false;
+   } else {
+      firstLabel = firstName;
+   }
+
+   if (!patterns.name.test(lastName)){
+      errors.push({description: 'You must eneter your last Name'});
+      lname = `Invalid Last Name`;
+      valid = false;
+   } else {
+      lastLabel = lastName;
+   }
+
+   if (!patterns.email.test(email)){
+      errors.push({description: "Email must be from a valid domain / phone (10 digs)"});
+      mail = `Ups, you must enter a valid email`;
+      valid = false;
+   } else {
+      mailLabel = email;
+   }
+
+   if(!patterns.mess.test(message)){
+      errors.push({description: "Must type a message"});
+      messg = `Ups, you write us a message`;
+      valid = false;
+   } else {
+      mailLabel = message;
+   }
+
+   if (valid == false) {
+      res.render("general/contact-us", {
+         title: "Contact Us",
+         errorMessages: errors,
+         first: fName,
+         last: lname,
+         e_mail: mail,
+         messageUser: messg,
+         actualFirst: firstLabel, 
+         actualLast: lastLabel,
+         actualMail: mailLabel
+      });
+   }else{
+      res.redirect("/");
    // using Twilio SendGrid's v3 Node.js Library
    // https://github.com/sendgrid/sendgrid-nodejs
       const sgMail = require('@sendgrid/mail');
@@ -204,8 +324,18 @@ router.post("/contact-us", (req, res)=>{
       .catch(err=>{
          console.log(`Error ${err}`);
       })
-
+   }
 })
+
+//Welcome Route
+router.get("/welcome", (req, res)=>{
+
+   res.render("general/welcome", {
+      title: "Welcome to the Workshop"
+   });
+
+
+});
 
 module.exports = router;
 

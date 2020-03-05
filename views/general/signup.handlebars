@@ -7,24 +7,28 @@
 </head>
 <body>
    <div class="signUpWrapper">
-      
-      <h1>Welcome</h1>
-
       <div id="signUpForm" class="formUser">
          <div class="formWrap">
             <h2 class="formTitle">Sign Up Here</h2>
-            <form action="/signup" method="POST">
-               <input type="text" class="input" id="firstName" name="firstName" placeholder="Enter First Name">
-               <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter Last Name">
-               <input type="text" class="input" id="mailPhone" name="mailPhone" placeholder="Enter Email or Mobile Number">
+            <form class="userForm" action="/signup" method="POST">
+               <input type="text" class="input" id="firstName" name="firstName" placeholder="Enter First Name" value="{{this.actualFirst}}">
+               {{#if this.first}} <br><span class="errorMessage">{{this.first}}</span> {{/if}}
+               <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter Last Name" value="{{this.actualLast}}">
+               {{#if this.last}} <br><span class="errorMessage">{{this.last}}</span> {{/if}}
+               <input type="text" class="input" id="mailPhone" name="mailPhone" placeholder="Enter Email or Mobile Number" value="{{this.actualMail}}">
+               {{#if this.e_mail}} <br><span class="errorMessage">{{this.e_mail}}</span> {{/if}}
                <input type="password" class="input" id="password" name="password" placeholder="Enter Password">
+               {{#if this.p_pass}} <br><span class="errorMessage">{{this.p_pass}}</span> {{/if}}
                <input type="password" class="input" id="rePassword" name="rePassword" placeholder="Re-enter Password">
+               {{#if this.p_repass}} <br><span class="errorMessage">{{this.p_repass}}</span> {{/if}}
 
-               {{#each errorMessages}}
-                  <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
-               {{/each}}
+               <div class="errosWrap">
+                  {{#each errorMessages}}
+                     <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
+                  {{/each}}
+               </div>
 
-               <input class="submitForm" type="submit" value="Join Now">
+               <input class="submitForm" id="submitBt" type="submit" value="Join Now">
             </form>
          </div>
       </div>

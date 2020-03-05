@@ -3,29 +3,31 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="/css/contact-us.css">
    <title>Document</title>
 </head>
 <section class="contact">
-   <div class="contactWrapper">
-      <form class="contact-form" action="/contact-us" method="POST">
-        <div class="input-fields">
-          
-         <input type="text" class="input" id="firstName" name="firstName" placeholder="First Name">
-
-         <input type="text" class="input" id="lasttName" name="lastName" placeholder="Last Name">
-
-         <input type="text" class="input" id="email" name="email" placeholder="you@domain">
-          
+   <div class="formWrap">
+     <h2 class="formTitle">Contact Us</h2>
+      <form class="userForm" action="/contact-us" method="POST">
+         <input type="text" class="input" id="firstName" name="firstName" placeholder="First Name" value="{{this.actualFirst}}">
+         {{#if this.first}} <br><span class="errorMessage">{{this.first}}</span> {{/if}}
+         <input type="text" class="input" id="lasttName" name="lastName" placeholder="Last Name" value="{{this.actualLast}}">
+         {{#if this.last}} <br><span class="errorMessage">{{this.last}}</span> {{/if}}
+         <input type="text" class="input" id="email" name="email" placeholder="you@domain" value="{{this.actualMail}}">
+          {{#if this.e_mail}} <br><span class="errorMessage">{{this.e_mail}}</span> {{/if}}
          <input type="text" class="input" id="subject" name="subject" placeholder="Subject">
-        </div>
-        <div class="msg">
-          <textarea placeholder="Message" id="message" name="message"></textarea>
-          <div class="btn">
-            <input type="submit" value="Contact Us">
-          </div>
-        </div>
-      </form>
-    </div>
+        
+         <textarea placeholder="Message" id="message" name="message"></textarea>
+         {{#if this.messageUser}} <br><span class="errorMessage">{{this.messageUser}}</span> {{/if}}
+
+         <div class="errosWrap">
+            {{#each errorMessages}}
+                <div class="errorMsg">{{this.description}}</div>
+            {{/each}}
+         </div>
+
+        <input class="submitForm" id="submitBt" type="submit" value="Contact">
+    </form>
+  </div>
 </section>
 </html>
