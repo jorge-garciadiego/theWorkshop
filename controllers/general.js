@@ -161,8 +161,31 @@ router.post("/signup", (req, res)=>{
       });
    }else{
       res.redirect("/welcome");
-      console.log("Sign Up successful!");
-   }
+         // using Twilio SendGrid's v3 Node.js Library
+         // https://github.com/sendgrid/sendgrid-nodejs
+         const sgMail = require('@sendgrid/mail');
+         sgMail.setApiKey(`${process.env.SEND_GRID_API_KEY}`);
+         const msg = {
+         to: `jorge.garciadiego@gmail.com`,
+         from: `${mailPhone}`,
+         subject: 'the Workshop message submit',
+         html: 
+         `Visitor's ${firstName} ${lastName} <br>
+         Email address: ${mailPhone}; <br>
+         Subject: "Welcome" <br>
+         Message; [Welcome to the Workshop]
+         `,
+         };
+
+         //Asynchornous operation
+         sgMail.send(msg)
+         .then(()=>{
+            res.redirect("/welcome");
+         })
+         .catch(err=>{
+            console.log(`Error ${err}`);
+         })
+         }
 
 })
 
