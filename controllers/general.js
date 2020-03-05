@@ -166,8 +166,8 @@ router.post("/signup", (req, res)=>{
          const sgMail = require('@sendgrid/mail');
          sgMail.setApiKey(`${process.env.SEND_GRID_API_KEY}`);
          const msg = {
-         to: `jorge.garciadiego@gmail.com`,
-         from: `${mailPhone}`,
+         to: `${mailPhone}`,
+         from: `jorge.garciadiego@gmail.com`,
          subject: 'the Workshop message submit',
          html: 
          `Visitor's ${firstName} ${lastName} <br>
