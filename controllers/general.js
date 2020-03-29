@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+//Import the User Model
+const userModel = require("../model/User");
+
 const productModel = require("../model/product");
 
 //Home Route
@@ -160,7 +163,7 @@ router.post("/signup", (req, res)=>{
          actualMail: mailLabel
       });
    }else{
-      res.redirect("/welcome");
+      
          // using Twilio SendGrid's v3 Node.js Library
          // https://github.com/sendgrid/sendgrid-nodejs
          const sgMail = require('@sendgrid/mail');
@@ -177,14 +180,31 @@ router.post("/signup", (req, res)=>{
          `,
          };
 
-         //Asynchornous operation
          sgMail.send(msg)
          .then(()=>{
-            res.redirect("/welcome");
+            console.log(`Email sent`);
          })
          .catch(err=>{
             console.log(`Error ${err}`);
          })
+
+         const newUser = 
+         {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.mailPhone,
+            password: req.body.password
+         }
+
+         const user = new userModel(newUser);
+         
+         user.save()
+         .then(()=>{
+            res.redirect("/welcome");
+         }).catch(err=>{
+            console.log(`Error entring into de data ${err}`);
+         })
+         //Asynchornous operation 
          }
 
 })
