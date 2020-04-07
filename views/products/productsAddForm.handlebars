@@ -1,0 +1,91 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+<div class="formWrap">
+   <h2 class="formTitle">Add a Product</h2>
+   <form class="userForm" method="POST" action="/products/add" enctype="multipart/form-data">
+
+      <div class="input-group mb-3">
+         <div class="input-group-prepend">
+            <div class="input-group-text">
+               <span>Name</span>
+            </div>
+         </div>
+         <input class="form-control" type="text" name="title" placeholder="Enter product name" value="{{actualTitle}}">
+      </div>
+      {{#if eTitle}}<small class="errorMessage">{{eTitle}}</small>{{/if}}
+      
+      <div class="form-group">
+         <label for="description">Description</label>
+         <textarea class="form-control" name="description" rows="3" placeholder="Enter Product Description">{{actualDescription}}</textarea>
+      </div>
+      {{#if eDescription}}<small class="errorMessage">{{eDescription}}</small> {{/if}}
+
+
+      <div class="input-group mb-3">
+         <div class="input-group-prepend">
+            <div class="input-group-text">
+               <span>Artist</span>
+            </div>
+         </div>
+         <input class="form-control" type="text" name="artist" placeholder="Enter Artist name" value="{{actualArtist}}">
+      </div>
+      {{#if eArtist}}<span class="errorMessage">{{eArtist}}</span>{{/if}}
+
+      <div class="input-group mb-3">
+         <div class="input-group-prepend">
+            <div class="input-group-text">
+               <span>Category</span>
+            </div>
+         </div>
+         <select class="form-control" name="category" id="category">
+            <option value="accesories" {{ifOption actualCat "accesories"}}>Accesories</option>
+            <option value="boutique" {{ifOption actualCat "boutique"}}>Boutique</option>
+            <option value="decor" {{ifOption actualCat "decor"}}>Decor</option>
+            <option value="home" {{ifOption actualCat "home"}}>Home</option>
+         </select>
+      </div>
+
+      <div class="input-group mb-3">
+         <div class="input-group-prepend">
+            <div class="input-group-text">
+               <span>Price</span>
+            </div>
+         </div>
+         <input class="form-control" type="text" name="price" placeholder="Enter the price" value="{{actualPrice}}">
+      </div>
+         {{#if ePrice}}<span class="errorMessage">{{ePrice}}</span>{{/if}}
+
+      <div class="input-group mb-3">
+         <div class="input-group-prepend">
+            <div class="input-group-text">
+               <span>Stock</span>
+            </div>
+         </div>
+         <input class="form-control" type="text" name="stock" placeholder="Enter the stock" value="{{actualStock}}">
+      </div>
+         {{#if eStock}}<small class="errorMessage">{{eStock}}</small>{{/if}}
+
+      <div class="input-group mb-3">
+         <div class="input-group-prepend">
+            <div class="input-group-text">
+               <input name="bestSeller" type="checkbox" value="true" {{ifCheck actualBestSeller}}> 
+            </div>
+         </div>
+         <input type="text" class="form-control" value="Best Seller" disabled>
+      </div>
+
+      <div class="custom-file">
+         <label class="custom-file-label" for="productPic">Product Picture URL</label>
+         <input class="custom-file-input" type="file" name="productPic">
+      </div>
+    
+         <div class="errosWrap">
+            {{#each errorMessages}}
+                <div class="errorMsg">{{this.description}}</div>
+            {{/each}}
+         </div>
+
+      <button class="btn btn-primary mt-1 btn-block" type="submit">Submit</button>
+   </form>
+</div>

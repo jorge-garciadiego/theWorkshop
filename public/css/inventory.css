@@ -1,0 +1,21 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   
+}
+
+body{
+   max-width: 95vw;
+   margin: auto;
+}
+
+table{
+   margin: auto;
+   max-width: 1200px;
+}
+
+.formEdit{
+   max-width: 800px;
+   margin: auto;
+}

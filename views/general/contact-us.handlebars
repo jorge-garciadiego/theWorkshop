@@ -17,7 +17,7 @@
           {{#if this.e_mail}} <br><span class="errorMessage">{{this.e_mail}}</span> {{/if}}
          <input type="text" class="input" id="subject" name="subject" placeholder="Subject">
         
-         <textarea placeholder="Message" id="message" name="message"></textarea>
+         <textarea placeholder="Message" id="message" name="message" value="{{this.actualMess}}"></textarea>
          {{#if this.messageUser}} <br><span class="errorMessage">{{this.messageUser}}</span> {{/if}}
 
          <div class="errosWrap">

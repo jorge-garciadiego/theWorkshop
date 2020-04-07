@@ -1,0 +1,64 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/inventory.css">
+
+
+<h2>Inventory Dashboard</h2>
+
+<section class="inventory">
+
+   <form action="POST" action="">
+      <div class="form-group mb-3">
+         <select class="form-control" name="productSearch">
+            <option value="accesories">Accesories</option>
+            <option value="boutique">Boutique</option>
+            <option value="decor">Decor</option>
+            <option value="home">Home</option>
+         </select>
+         <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+         </div>
+         
+      </div>
+     
+   </form>
+
+<div class="table-responsive">
+   <table class="table table-sm table-dark table-hover">
+      <thead>
+         <th>Image</th>
+         <th>Name</th>
+         <th>Category</th>
+         <th>Price</th>
+         <th>Stock</th>
+         <th>Operation</th>
+      </thead>
+
+      <tbody>
+         {{#each data}}
+            <tr>
+               <td>
+                  <span><img class="w-25" src="/uploads/{{this.productPic}}"alt=""></span>
+               </td>
+               <td>
+                  <span>{{this.title}}</span>
+               </td>
+               <td>
+                  <span>{{this.category}}</span>
+               </td>
+               <td>
+                  <span>{{this.price}}</span>
+               </td>
+               <td>
+                  <span>{{this.stock}}</span>
+               </td>
+               <td>
+                  <a href="/products/edit/{{this.id}}" class="btn btn-primary">Edit</a>
+                  <a href="/products/delete/{{this.id}}" class="btn btn-primary">Delete</a>
+               </td>
+            </tr>
+         {{/each}}
+      </tbody>
+   </table>
+</div>
+   
+</section>

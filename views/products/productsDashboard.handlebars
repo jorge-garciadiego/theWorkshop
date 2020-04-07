@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/css/ourProducts.css">
-
 <section class="products">
 
    <div class="container">
@@ -9,14 +8,32 @@
          </p>
       </div>
 
+      <form class="filter" action="/products" method="POST">
+         <select name="categories" id="categories">
+            <option value="all">All</option>
+            <option value="accesories">Accesories</option>
+            <option value="boutique">Boutique</option>
+            <option value="decor">Decor</option>
+            <option value="home">Home</option>
+      </select>
+         <div class="searchField">
+            <input type="text" class="input" placeholder="Search">
+         </div>
+
+         <button class="search" id="searchBt" type="submit">
+            <i class="fas fa-search"></i>
+         </button>
+         
+      </form>
+
       <main class="productsGrid">
-         {{#each products}}
+         {{#each data}}
             <div class="singleBox">
-               <img src="{{this.img}}" alt="">
+               <img src="/uploads/{{this.productPic}}" alt="">
       
             <div class="boxContent">
                <div class="itemTitle bsTitle">
-                  <h3 class="titleName">{{this.title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{this.cat}}</h3>
+                  <h3 class="titleName">{{this.title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{this.cateory}}</h3>
                </div>
                 
                <div class="productData">

@@ -75,7 +75,7 @@ img{
 
 .boxContent{
    position: absolute;
-   height: 55%;
+   height: 50%;
    left: 0;
    bottom: -50px;
    width: 100%;
@@ -85,6 +85,7 @@ img{
    padding: 10px 5px;
    background: linear-gradient(45deg, rgba(13,13,13,1) 0%,rgba(38,38,38,.75) 0%,rgba(191,191,191,.5) 100%);
    transition: all .3s;
+   
    display: grid;
    justify-content: center;
    grid-template-areas: 
@@ -106,6 +107,7 @@ img{
 
 .productData{
    grid-area: productData;
+
 
 }
 

@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/home.css">
-<link rel="stylesheet" href="/css/products.css">
+<link rel="stylesheet" href="/css/ourProducts.css">
 
 <div class="wrapper">
       <div class="top">
@@ -45,13 +45,13 @@
       
       <section class="productsGrid">
          
-         {{#each bestSellers}}
+         {{#each data}}
             <div class="singleBox">
-               <img src="{{this.img}}" alt="">
+               <img src="/uploads/{{this.productPic}}" alt="">
       
             <div class="boxContent">
                <div class="itemTitle bsTitle">
-                  <h3 class="titleName">{{this.title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{this.cat}}</h3>
+                  <h3 class="titleName">{{this.title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{this.category}}</h3>
                </div>
                 
                <div class="productData">
@@ -75,7 +75,7 @@
          <ul class="boxWrapper">
             {{#each categories}}
                <li>
-                  <div class="box img-1" style={{colour}}>
+                  <div class="box img-1" style="background:{{colour}}">
                      <a href="#">
                         <div class="info">
                            <h3 class="name">{{title}}</h3>

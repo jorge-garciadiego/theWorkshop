@@ -1,9 +1,6 @@
 //Import express package
 const express = require("express");
 
-//Create the express app object
-const app = express();
-
 //import express-handlebars
 const exphbs = require("express-handlebars");
 
@@ -13,27 +10,71 @@ const bodyparser = require("body-parser");
 //Import the mongoose to the file
 const mongoose = require('mongoose');
 
+//importing express-session
+const session = require('express-session');
+
+//Import express-fileupload
+const fileupload = require('express-fileupload');
+
 //load environmet variable file
 require('dotenv').config({path:"./config/keys.env"});
 
-//Handlebars Middleware (tells express to set Handlebars as the template engine)
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+//Import router objects
+const generalRoutes = require("./controllers/general");
+const productRoutes = require("./controllers/products");
 
-//Configure the public folder to be the static elements container
-app.use(express.static('public'));
+//Create the express app object
+const app = express();
 
 //Tells express to make form data available via req.body in every request
 app.use(bodyparser.urlencoded({extended:false}));
 
-// Load controllers
-const generalController = require("./controllers/general");
-const productController = require("./controllers/products");
+//Configure the public folder to be the static elements container
+app.use(express.static('public'));
 
-//Map each controller to the app express object
-app.use("/", generalController);
-app.use("/", productController);
+//Handlebars Middleware (tells express to set Handlebars as the template engine)
+//Handlebars Helpers added
+app.engine("handlebars",exphbs(
+   {
+       helpers:{
+           ifOption: function(value, compare){
+            if(value == compare){
+                   return "selected";
+            }  
+           },
 
+           ifCheck: function(value){
+               if(value == true || value == 'on'){ 
+                return "checked"  
+               }
+           },
+           
+           convDate: function(date){
+               return moment(date).format("YYYY-MM-DD");
+           }
+           
+           }
+   }
+));
+
+app.set('view engine', 'handlebars');
+
+//This is to allow specific forms and/or links that were submitted/press to send PUT and DELETE 
+app.use((req,res,next)=>{
+   if(req.query.method == "PUT"){
+       req.method="PUT"
+   } else if(req.query.method == "DELETE"){
+       req.method="DELETE"
+   }
+
+   next();
+})
+
+app.use(fileupload());
+
+//Maps EXPRESS TO ALL OUR ROUTER OBJECTS
+app.use("/", generalRoutes);
+app.use("/products", productRoutes);
 
 // Connection method that connects mongoose to MongoDB
 //This method is an assincronous operation
@@ -42,6 +83,17 @@ mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true,
    console.log(`Connected to MongoDB Database`);
 })
 .catch(err=>console.log(`Error ocurred when connecting to the database: ${err}`));
+
+app.use(fileupload());
+
+/* app.use(session({
+   secret: process.nextTick.SESSION_SECRET,
+   resave: false,
+   saveUninitialized: true,
+   cookie: { secure: true }
+ })); */
+
+
 
 
 //Setting up the PORT

@@ -6,14 +6,57 @@ const userModel = require("../model/User");
 
 const productModel = require("../model/product");
 
+const catModel = require("../model/cat");
+
 //Home Route
 router.get("/", (req, res)=>{
 
-   res.render("general/home", {
-      title: "the Workshop",
-      bestSellers: productModel.getBestSellers(),
-      categories: productModel.getCategories()
-   });
+   productModel.find({bestSeller:true})
+   .then((products)=>{
+
+      const filteredProduct = products.map(product=>{
+         return{
+            id: product._id,
+            bestSeller: product.bestSeller,
+            title: product.title,
+            description: product.description,
+            artist:product.artist,
+            category: product.category,
+            price: product.price,
+            productPic: product.productPic
+         }
+      });
+
+      catModel.find()
+      .then((cats)=>{
+
+         const filteredCat = cats.map(cat=>{
+            return{
+               id: cat._id,
+               title: cat.title,
+               description: cat.description,
+               colour: cat.colour
+            }
+         });
+
+         res.render("general/home",{
+            title: "the Workshop",
+            heading: "Our Products",
+            data: filteredProduct,
+            categories: filteredCat     
+         });
+      })
+      .catch(err=>console.log(`Error happend pulling Categories from the database ${err}`))
+
+      
+      
+   })
+   .catch(err=>console.log(`Error happend pulling from the database ${err}`));
+   
+     // categories: productModel.getCategories()
+
+
+
 });
 
 /* Unable the idea is to apply the error messages in the main page, with the forms in in the main page
@@ -105,7 +148,7 @@ router.post("/signup", (req, res)=>{
 
    //Object with the javascript REGEX patterns
    const patterns = {
-      name: /^[a-zA-Z]+$/,
+      name: /(?:\s*[a-zA-Z]+){1,3}/,
       email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       phoneNum: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
       password: /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/
@@ -260,6 +303,23 @@ router.post("/login", (req, res) => {
       actualMail: mailLabel
    });
    } else {
+
+      //objecto to store the user data
+      const formData = {
+         emailPhone: req.body.e_mail,
+         password: req.body.loginPass
+      }
+
+/*       
+      //Check to see if the users email is in the database
+      userModel.findOne({email:req.body.email})
+      .then((user)=>{
+         
+         if(user ==null){
+            //no matching email
+         }
+      }) */
+
       res.redirect("/welcome");
       console.log("Login successful!!");
    }
@@ -289,11 +349,12 @@ router.post("/contact-us", (req, res)=>{
    let firstLabel;
    let lastLabel;
    let mailLabel;
+   let messLabel;
 
    const patterns = {
       name: /^[a-zA-Z]+$/,
       email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      mess: /[A-Za-z]+$/
+      mess:  /[a-z0-9]/
    }
 
    if (!patterns.name.test(firstName)) {
@@ -325,7 +386,7 @@ router.post("/contact-us", (req, res)=>{
       messg = `Ups, you write us a message`;
       valid = false;
    } else {
-      mailLabel = message;
+      messLabel = message;
    }
 
    if (valid == false) {
@@ -338,7 +399,8 @@ router.post("/contact-us", (req, res)=>{
          messageUser: messg,
          actualFirst: firstLabel, 
          actualLast: lastLabel,
-         actualMail: mailLabel
+         actualMail: mailLabel,
+         actualMess: messLabel
       });
    }else{
       res.redirect("/");

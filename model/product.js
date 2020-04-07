@@ -1,4 +1,65 @@
- 
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const productSchema = new Schema({
+
+    //Indicates the shape of the documents that will be entring the collection in the database
+    title:
+    {
+        type: String,
+        required: true
+    },
+    description:
+    {
+        type: String,
+        required: true
+    },
+    artist:
+    {
+        type: String,
+        required: true
+    },
+    category:
+    {
+        type: String,
+        required: true
+    },
+    price:
+    {
+        type: Number,
+        required: true
+    },
+    bestSeller:
+    {
+        type: Boolean,
+        default: false
+    },
+    productPic:
+    {
+        type: String
+
+    },
+    stock:
+    {
+        type: Number,
+        default: 1
+    },
+    dateCreated:
+    {
+        type: Date,
+        default: Date.now()
+    }
+});
+
+const productModel = mongoose.model('Product', productSchema);
+
+module.exports = productModel;
+
+
+
+//Database simulation 
+
+/*
 const products=
 {
     fakeDB:[],
@@ -72,3 +133,4 @@ const products=
 products.init();
 module.exports=products;
 
+*/

@@ -1,6 +1,12 @@
 
 const navButton = document.querySelector('button[aria-expanded]');
 
+
+navButton.addEventListener('click', toogleNav);
+
+const openMenu = document.querySelector('#toMenu');
+
+
 function toogleNav({target}){
    const expanded = target.getAttribute('aria-expanded') === 'true' || false;
    navButton.setAttribute('aria-expanded', !expanded);
@@ -8,9 +14,3 @@ function toogleNav({target}){
    console.log(expanded);
 
 }
-
-navButton.addEventListener('click', toogleNav);
-
-const openMenu = document.querySelector('#toMenu');
-
-openMenu.addEventListener('click', toogleNav);
