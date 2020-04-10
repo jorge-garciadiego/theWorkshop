@@ -1,27 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>{{title}}</title>
-</head>
+    
+ 
+ <link rel="stylesheet" href="/css/formBoot.css">
+
 <body>
+
+   {{#each errors}}
+      <div>{{this}}</div>
+   {{/each}}
+
    <div class="loginWrapper">
        <div id="loginForm" class="formUser">
             <div class="formWrap">
-               <h2 class="formTitle">Login</h2>
                <form class="userForm" action="/login" method="POST">
-                  <input type="text" class="input" id="username" name="emailPhone" placeholder="Email / Phone number" value="{{this.actualMail}}">
-                  {{#if this.e_mail}} <br><span class="errorMessage">{{this.e_mail}}</span> {{/if}}
-                  <input type="password" class="input" id="loginPass" name="loginPass" placeholder="Password">
-                  {{#if this.p_pass}} <br><span class="errorMessage">{{this.p_pass}}</span> {{/if}}
+
+                  <h2 class="formTitle">Login</h2>
+
+                  {{#if e_mail}} <br><span class="errorMessage">{{e_mail}}</span> {{/if}}
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">
+                           <span><i class="fas fa-envelope"></i></span>
+                        </div>
+                     </div>
+                     <input class="form-control" type="text" name="emailPhone" placeholder="Your email" value="{{actualMail}}">
+                  </div>
+
+                  {{#if p_pass}} <br><span class="errorMessage">{{p_pass}}</span> {{/if}}
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <div class="input-group-text">
+                           <span><i class="fas fa-key"></i></span>
+                        </div>
+                     </div>
+                     <input class="form-control" type="password" name="loginPass" placeholder="Password">
+                  </div>                
 
                   <div class="errosWrap">
                      {{#each errorMessages}}
                         <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
                      {{/each}}
                   </div>
-                  <input class="submitForm" id="submitBt" type="submit" value="Login">
+
+                  <button class="btn btn-primary mt-1" type="submit">Login</button>
+                  
                </form>
             </div>
       </div>

@@ -2,11 +2,34 @@
 const express = require('express');
 const router = express.Router();
 const productModel = require("../model/product");
+const catModel = require("../model/cat");
 const path = require("path");
+const isAuthenticated = require("../middleware/auth");
+const isAdmin = require("../middleware/isAdmin");
+
 
 //Route to direct user to Add a product form
-router.get("/add", (req,res)=>{
-   res.render("products/productsAddForm");
+router.get("/add", isAuthenticated, isAdmin, (req,res)=>{
+
+   catModel.find()
+   .then((cats)=>{
+
+      const filteredCat = cats.map(cat=>{
+         return{
+            id: cat._id,
+            title: cat.title,
+            description: cat.description,
+            colour: cat.colour
+         }
+      });
+
+      res.render("products/productsAddForm", {
+         title: "Products",
+         heading: "Our Products",
+         categories: filteredCat     
+      });
+   })
+   .catch(err=>console.log(`Error happend pulling Categories from the database ${err}`))
 });
 
 //Products Route
@@ -26,12 +49,27 @@ router.get("/list", (req, res)=>{
             productPic: product.productPic
          }
       });
+      
+      catModel.find()
+      .then((cats)=>{
 
-      res.render("products/productsDashboard", {
-         title: "Products",
-         heading: "Our Products",
-         data: filteredProduct     
-      });
+         const filteredCat = cats.map(cat=>{
+            return{
+               id: cat._id,
+               title: cat.title,
+               description: cat.description,
+               colour: cat.colour
+            }
+         });
+
+         res.render("products/productsDashboard", {
+            title: "Products",
+            heading: "Our Products",
+            data: filteredProduct,
+            categories: filteredCat     
+         });
+      })
+      .catch(err=>console.log(`Error happend pulling Categories from the database ${err}`))
 
    })
    .catch(err=>console.log(`Error happend when pulling from the database: ${err}`));
@@ -39,7 +77,7 @@ router.get("/list", (req, res)=>{
   
 });
 
-router.get("/inventory",(req,res)=>{
+router.get("/inventory", isAuthenticated, isAdmin,(req,res)=>{
    productModel.find()
    .then((products)=>{
       const filteredProducts = products.map(product=>{
@@ -55,16 +93,31 @@ router.get("/inventory",(req,res)=>{
          }
       });
 
-      res.render("products/productsInventory",{
-         title: "Inventory",
-         heading: "the Workshop Inventory",
-         data: filteredProducts
+      catModel.find()
+      .then((cats)=>{
+
+         const filteredCat = cats.map(cat=>{
+            return{
+               id: cat._id,
+               title: cat.title,
+               description: cat.description,
+               colour: cat.colour
+            }
+         });
+
+         res.render("products/productsInventory", {
+            title: "Products",
+            heading: "Our Products",
+            data: filteredProducts,
+            categories: filteredCat     
+         });
       })
+      .catch(err=>console.log(`Error happend pulling Categories from the database ${err}`))
    })
    .catch(err=>console.log(`Error getting the product documents from the Database${err}`));
 })
 
-router.post("/add",(req,res)=>{
+router.post("/add", isAuthenticated, isAdmin, (req,res)=>{
    const errors = [];
 
    const{title, description, artist, category, price, stock, bestSeller} = req.body;
@@ -179,6 +232,7 @@ router.post("/add",(req,res)=>{
                productPic: req.files.productPic.name
             })
             .then(()=>{
+               
                res.redirect("/products/list")
             })
             
@@ -191,12 +245,13 @@ router.post("/add",(req,res)=>{
 }) 
 
 
-router.get("/edit/:id",(req,res)=>{
+router.get("/edit/:id", isAuthenticated, isAdmin, (req,res)=>{
    
    
    productModel.findById(req.params.id)
    .then((product)=>{
       const {_id, title, description, artist, category, bestSeller, price, stock, productPic} = product;
+      
       res.render("products/productsEditForm",{
          _id,
          title,
@@ -213,7 +268,7 @@ router.get("/edit/:id",(req,res)=>{
    
 })
 
-router.put("/update/:id",(req,res)=>{
+router.put("/update/:id", isAuthenticated, isAdmin, (req,res)=>{
 
    const product =
    {
@@ -253,6 +308,40 @@ router.put("/update/:id",(req,res)=>{
          */
 })
 
+router.delete("/delete/:id", isAuthenticated, isAdmin, (req,res)=>{
+
+   productModel.deleteOne({_id:req.params.id})
+   .then(()=>{
+      res.redirect("/products/inventory");
+   })
+   .catch(err=>`Error deleting the document into the database ${err}`)
+})
+
+
+//Product Profile routes 
+
+// HEEEREEEE
+
+router.get("/profile/:id", (req,res)=>{
+
+   productModel.findById(req.params.id)
+   .then((product)=>{
+      const {_id, title, description, artist, category, bestSeller, price, stock, productPic} = product;
+      
+      res.render("products/productProfile",{
+         _id,
+         title,
+         description,
+         artist,
+         category,
+         bestSeller,
+         price,
+         stock,
+         productPic
+      })
+   })
+   .catch(err=>`Error pulling the document from the database ${err}`);
+})
 
 
 

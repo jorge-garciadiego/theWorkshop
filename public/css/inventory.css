@@ -1,21 +1,42 @@
-*{
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   
-}
 
 body{
-   max-width: 95vw;
+   background: #EDE9F2;
    margin: auto;
+   max-width: 1300px;
 }
 
-table{
-   margin: auto;
-   max-width: 1200px;
+li{
+   list-style: none;
 }
 
-.formEdit{
-   max-width: 800px;
-   margin: auto;
+.container{
+   background: #DDC4E8;
+   border-radius: 5px;
+   color: #595956;
+   margin-bottom: 20px;
+}
+
+.gridRow:hover{
+   background: rgba(221, 220, 255, 0.8);
+}
+
+
+.gridRow{
+   padding: 5px;
+   margin-bottom: 0;
+   border-top: solid #F0F2F0;
+   border-bottom: solid #F0F2F0;
+   border-width: thin;
+}
+
+.btn{
+   background: #BDD8E8;
+   border-color: #CFFFF1;
+   color: #595956;
+}
+
+.btn:hover{
+   background: #CFFFF1;
+   border-color: #F0F2F0;
+   color: #595956;
 }

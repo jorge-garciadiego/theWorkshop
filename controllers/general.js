@@ -8,6 +8,13 @@ const productModel = require("../model/product");
 
 const catModel = require("../model/cat");
 
+const bcrypt = require("bcryptjs");
+
+const path = require("path");
+
+const isAuthenticated = require("../middleware/auth");
+
+const dashboardLoader = require("../middleware/authorization");
 //Home Route
 router.get("/", (req, res)=>{
 
@@ -206,46 +213,61 @@ router.post("/signup", (req, res)=>{
          actualMail: mailLabel
       });
    }else{
-         // using Twilio SendGrid's v3 Node.js Library
-         // https://github.com/sendgrid/sendgrid-nodejs
-         const sgMail = require('@sendgrid/mail');
-         sgMail.setApiKey(`${process.env.SEND_GRID_API_KEY}`);
-         const msg = {
-         to: `${mailPhone}`,
-         from: `jorge.garciadiego@gmail.com`,
-         subject: 'the Workshop message submit',
-         html: 
-         `Visitor's ${firstName} ${lastName} <br>
-         Email address: ${mailPhone}; <br>
-         Subject: "Welcome" <br>
-         Message; [Welcome to the Workshop]
-         `,
-         };
-
-         sgMail.send(msg)
-         .then(()=>{
-            console.log(`Email sent`);
-         })
-         .catch(err=>{
-            console.log(`Error ${err}`);
-         })
 
          const newUser = 
          {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.mailPhone,
-            password: req.body.password
+            password: req.body.password,
+            picture: req.body.picture
          }
 
          const user = new userModel(newUser);
          
          user.save()
-         .then(()=>{
-            res.redirect("/welcome");
-         }).catch(err=>{
-            console.log(`Error entring into de data ${err}`);
-         })
+         .then((user)=>{
+            req.files.picture.name = `user_pic${user._id}${path.parse(req.files.picture.name).name}${path.parse(req.files.picture.name).ext}`;
+   
+            req.files.picture.mv(`public/uploads/usersPictures/${req.files.picture.name}`)
+            .then(()=>{
+   
+               userModel.updateOne({_id:user._id},{
+                  picture: req.files.picture.name
+               })
+               .then(()=>{
+
+                  // using Twilio SendGrid's v3 Node.js Library
+                  // https://github.com/sendgrid/sendgrid-nodejs
+                  const sgMail = require('@sendgrid/mail');
+                  sgMail.setApiKey(`${process.env.SEND_GRID_API_KEY}`);
+                  const msg = {
+                  to: `${mailPhone}`,
+                  from: `jorge.garciadiego@gmail.com`,
+                  subject: 'the Workshop message submit',
+                  html: 
+                  `Visitor's ${firstName} ${lastName} <br>
+                  Email address: ${mailPhone}; <br>
+                  Subject: "Welcome" <br>
+                  Message; [Welcome to the Workshop]
+                  `,
+                  };
+
+                  sgMail.send(msg)
+                  .then(()=>{
+                     console.log(`Email sent`);
+                     res.redirect("/login");
+                  })
+                  .catch(err=>{
+                     console.log(`Error ${err}`);
+                  })
+                  
+               })
+               
+            })
+            }).catch(err=>{
+               console.log(`Error entring into de data ${err}`);
+            });
          //Asynchornous operation 
          }
 
@@ -303,25 +325,40 @@ router.post("/login", (req, res) => {
       actualMail: mailLabel
    });
    } else {
-
-      //objecto to store the user data
-      const formData = {
-         emailPhone: req.body.e_mail,
-         password: req.body.loginPass
-      }
-
-/*       
+     
       //Check to see if the users email is in the database
-      userModel.findOne({email:req.body.email})
+      userModel.findOne({email:req.body.emailPhone})
       .then((user)=>{
          
-         if(user ==null){
-            //no matching email
-         }
-      }) */
+         const errors =[];
 
-      res.redirect("/welcome");
-      console.log("Login successful!!");
+         if(user == null){
+            //no matching email
+            errors.push("Sorry, your email and/or is incorrect");
+            res.render("general/login",{
+               errors
+            })
+
+         } else {
+            bcrypt.compare(req.body.loginPass, user.password)
+            .then(isMatched=>{
+               if(isMatched){
+                  //create our session
+                  req.session.userInfo = user;
+                  res.redirect("/profile");
+               } else {
+                  errors.push("Sorry, your email and/or password is incorrect");
+                  res.render("general/login", {
+                     errors
+                  });
+               }
+            })
+            .catch(err=>console.log(`Error ${err}`));
+         }
+      }) 
+
+      //res.redirect("/welcome");
+      //console.log("Login successful!!");
    }
 })
 
@@ -359,7 +396,7 @@ router.post("/contact-us", (req, res)=>{
 
    if (!patterns.name.test(firstName)) {
       errors.push({description: 'You must eneter your first Name'});
-      fName = `Invalid First Name`;
+      fName = `You forgot your name`;
       valid = false;
    } else {
       firstLabel = firstName;
@@ -367,14 +404,14 @@ router.post("/contact-us", (req, res)=>{
 
    if (!patterns.name.test(lastName)){
       errors.push({description: 'You must eneter your last Name'});
-      lname = `Invalid Last Name`;
+      lname = `You forgot your lastname`;
       valid = false;
    } else {
       lastLabel = lastName;
    }
 
    if (!patterns.email.test(email)){
-      errors.push({description: "Email must be from a valid domain / phone (10 digs)"});
+      errors.push({description: "Email must be from a valid domain"});
       mail = `Ups, you must enter a valid email`;
       valid = false;
    } else {
@@ -382,8 +419,8 @@ router.post("/contact-us", (req, res)=>{
    }
 
    if(!patterns.mess.test(message)){
-      errors.push({description: "Must type a message"});
-      messg = `Ups, you write us a message`;
+      errors.push({description: "A message haven't been written"});
+      messg = `Ups, you forgot to write us a message`;
       valid = false;
    } else {
       messLabel = message;
@@ -400,7 +437,8 @@ router.post("/contact-us", (req, res)=>{
          actualFirst: firstLabel, 
          actualLast: lastLabel,
          actualMail: mailLabel,
-         actualMess: messLabel
+         actualMess: messLabel,
+         actualSubject: subject
       });
    }else{
       res.redirect("/");
@@ -431,15 +469,16 @@ router.post("/contact-us", (req, res)=>{
    }
 })
 
-//Welcome Route
-router.get("/welcome", (req, res)=>{
-
-   res.render("general/welcome", {
-      title: "Welcome to the Workshop"
-   });
 
 
-});
+router.get("/profile", isAuthenticated, dashboardLoader);
+
+
+router.get("/logout",(req,res)=>{
+
+   req.session.destroy();
+   res.redirect("/login")
+})
 
 module.exports = router;
 

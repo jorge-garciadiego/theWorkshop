@@ -1,0 +1,49 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   
+}
+
+body{
+   max-width: 1200px;
+   margin: auto;
+}
+
+table{
+   margin: auto;
+   
+}
+
+.formEdit{
+   max-width: 800px;
+   margin: auto;
+}
+
+form{
+   max-width: 500px;
+   margin: auto;
+   padding: 20px;
+   background: #F2F2F2;
+   border: thin #262626;
+   margin-bottom: 50px;
+   border-radius: 20px;
+}
+
+.errorMessage{
+   color: #F2075D;
+   font-family: 'Architects Daughter', cursive;
+}
+
+.errosWrap{
+   border: #595956 solid thin;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+   padding-left: 10px;
+   padding-right: 5px;
+   font-family: 'Architects Daughter', cursive;
+   font-size: 13px;
+   text-align: justify;
+   margin-top: 5px;
+}

@@ -11,10 +11,12 @@
       <form class="filter" action="/products" method="POST">
          <select name="categories" id="categories">
             <option value="all">All</option>
-            <option value="accesories">Accesories</option>
-            <option value="boutique">Boutique</option>
-            <option value="decor">Decor</option>
-            <option value="home">Home</option>
+            {{#each categories}}
+               
+               <option value="{{title}}">{{title}}</option>
+
+            {{/each}}
+           
       </select>
          <div class="searchField">
             <input type="text" class="input" placeholder="Search">

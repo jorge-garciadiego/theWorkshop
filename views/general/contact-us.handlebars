@@ -1,24 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
-</head>
+  
+    <link rel="stylesheet" href="/css/formBoot.css">
+
 <section class="contact">
    <div class="formWrap">
-     <h2 class="formTitle">Contact Us</h2>
+     
       <form class="userForm" action="/contact-us" method="POST">
-         <input type="text" class="input" id="firstName" name="firstName" placeholder="First Name" value="{{this.actualFirst}}">
-         {{#if this.first}} <br><span class="errorMessage">{{this.first}}</span> {{/if}}
-         <input type="text" class="input" id="lasttName" name="lastName" placeholder="Last Name" value="{{this.actualLast}}">
-         {{#if this.last}} <br><span class="errorMessage">{{this.last}}</span> {{/if}}
-         <input type="text" class="input" id="email" name="email" placeholder="you@domain" value="{{this.actualMail}}">
-          {{#if this.e_mail}} <br><span class="errorMessage">{{this.e_mail}}</span> {{/if}}
-         <input type="text" class="input" id="subject" name="subject" placeholder="Subject">
-        
-         <textarea placeholder="Message" id="message" name="message" value="{{this.actualMess}}"></textarea>
-         {{#if this.messageUser}} <br><span class="errorMessage">{{this.messageUser}}</span> {{/if}}
+         <h2 class="formTitle">Contact Us</h2>
+         {{#if first}} <br><small class="errorMessage">{{first}}</small> {{/if}}
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <div class="input-group-text">
+                  <span>First Name</span>
+               </div>
+            </div>
+            <input class="form-control" type="text" name="firstName" placeholder="Your name" value="{{actualFirst}}">
+         </div>
+            
+         {{#if last}} <br><small class="errorMessage">{{last}}</small>{{/if}}
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <div class="input-group-text">
+                  <span>Last Name</span>
+               </div>
+            </div>
+            <input class="form-control" type="text" name="lastName" placeholder="Your lastname" value="{{actualLast}}">
+         </div>
+         
+         {{#if e_mail}} <br><small class="errorMessage">{{e_mail}}</small> {{/if}}
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <div class="input-group-text">
+                  <span><i class="fas fa-envelope"></i></span>
+               </div>
+            </div>
+            <input class="form-control" type="text" name="email" placeholder="user@domain" value="{{actualMail}}">
+         </div>
+         
+         <div class="input-group mb-3">
+            <div class="input-group-prepend">
+               <div class="input-group-text">
+                  <span>Subject</i></span>
+               </div>
+            </div>
+            <input class="form-control" type="text" name="subject" placeholder="Subject" value="{{actualSubject}}">
+         </div>
+         
+         {{#if messageUser}} <br><small class="errorMessage">{{messageUser}}</small> {{/if}}
+         <div class="form-group">
+            <textarea class="form-control" name="message" rows="3" placeholder="Thank you for your message">{{actualMess}}</textarea>
+         </div>
 
          <div class="errosWrap">
             {{#each errorMessages}}
@@ -26,7 +56,7 @@
             {{/each}}
          </div>
 
-        <input class="submitForm" id="submitBt" type="submit" value="Contact">
+         <button class="btn btn-primary mt-1" type="submit">Contact</button>
     </form>
   </div>
 </section>

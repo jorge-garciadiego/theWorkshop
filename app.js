@@ -37,10 +37,11 @@ app.use(express.static('public'));
 app.engine("handlebars",exphbs(
    {
        helpers:{
+           
            ifOption: function(value, compare){
-            if(value == compare){
-                   return "selected";
-            }  
+            if(value === compare.toLowerCase()){
+                return "selected";
+            }
            },
 
            ifCheck: function(value){
@@ -72,6 +73,23 @@ app.use((req,res,next)=>{
 
 app.use(fileupload());
 
+
+app.use(session({
+    secret: `${process.nextTick.SECRET_KEY}`,
+    resave: false,
+    saveUninitialized: true,
+    //cookie: { secure: true }
+  }));
+
+//This is a middleware function that creates a Template Variable that holds the session in order to acces the user object in Handlebars POWERFUL YEEIIIIIIIIIII
+app.use((req,res,next)=>{
+   
+    res.locals.user = req.session.userInfo;
+ 
+    next();
+ })
+
+
 //Maps EXPRESS TO ALL OUR ROUTER OBJECTS
 app.use("/", generalRoutes);
 app.use("/products", productRoutes);
@@ -83,17 +101,6 @@ mongoose.connect(process.env.MONGO_DB_CONNECTION_STRING, {useNewUrlParser: true,
    console.log(`Connected to MongoDB Database`);
 })
 .catch(err=>console.log(`Error ocurred when connecting to the database: ${err}`));
-
-app.use(fileupload());
-
-/* app.use(session({
-   secret: process.nextTick.SESSION_SECRET,
-   resave: false,
-   saveUninitialized: true,
-   cookie: { secure: true }
- })); */
-
-
 
 
 //Setting up the PORT

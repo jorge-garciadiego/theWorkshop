@@ -1,18 +1,42 @@
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 <link rel="stylesheet" href="/css/inventory.css">
 
 
 <h2>Inventory Dashboard</h2>
+
+    <section id="actions" class="py-4 mb-4 big-light">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-4">
+                <a href="/products/add" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
+                   <i class="fas fa-plus"></i> Add a Product
+                </a>
+             </div>
+             <div class="col-md-4">
+                <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
+                   <i class="fas fa-plus"></i> Add Category
+                </a>
+             </div>
+             <div class="col-md-4">
+                <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
+                   <i class="fas fa-plus"></i> Add User
+                </a>
+             </div>
+          </div>
+       </div>
+    </section>
 
 <section class="inventory">
 
    <form action="POST" action="">
       <div class="form-group mb-3">
          <select class="form-control" name="productSearch">
-            <option value="accesories">Accesories</option>
-            <option value="boutique">Boutique</option>
-            <option value="decor">Decor</option>
-            <option value="home">Home</option>
+              <option value="all">All</option>
+            {{#each categories}}
+               
+               <option value="{{title}}">{{title}}</option>
+
+            {{/each}}
          </select>
          <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
@@ -22,43 +46,50 @@
      
    </form>
 
-<div class="table-responsive">
-   <table class="table table-sm table-dark table-hover">
-      <thead>
-         <th>Image</th>
-         <th>Name</th>
-         <th>Category</th>
-         <th>Price</th>
-         <th>Stock</th>
-         <th>Operation</th>
-      </thead>
+   <div class="container">
+         <ul class="row text-center">
+            <li class="col-sm">Picture</li>
+            <li class="col-sm">Name</li>
+            <li class="col-sm">Category</li>
+            <li class="col-sm">Price</li>
+            <li class="col-sm">Best Seller</li>
+            <li class="col-sm">Stock</li>
+            <li class="col-sm">Action</li>
+         </ul>
 
-      <tbody>
          {{#each data}}
-            <tr>
-               <td>
-                  <span><img class="w-25" src="/uploads/{{this.productPic}}"alt=""></span>
-               </td>
-               <td>
+            <ul class="row text-center gridRow">
+               <li class="col">
+                  <span><img class="w-100" src="/uploads/{{this.productPic}}"alt=""></span>
+               </li>
+               <li class="col-sm">
                   <span>{{this.title}}</span>
-               </td>
-               <td>
+               </li>
+               <li class="col-sm">
                   <span>{{this.category}}</span>
-               </td>
-               <td>
+               </li>
+               <li class="col-sm">
                   <span>{{this.price}}</span>
-               </td>
-               <td>
+               </li>
+               <li class="col-sm">
+                  <span>{{this.bestSeller}}</span>
+               </li>
+               <li class="col-sm">
                   <span>{{this.stock}}</span>
-               </td>
-               <td>
-                  <a href="/products/edit/{{this.id}}" class="btn btn-primary">Edit</a>
-                  <a href="/products/delete/{{this.id}}" class="btn btn-primary">Delete</a>
-               </td>
-            </tr>
+               </li>
+               <li class="col-sm">
+                  <a href="/products/edit/{{this.id}}" class="btn">Edit</a>
+                  <a href="/products/delete/{{this.id}}?method=DELETE" class="btn">Delete</a>
+               </li>
+            </ul>
+
+         {{else}}
+            <h2>There are no Items in the Inventory, Sorry...</h2>
          {{/each}}
-      </tbody>
-   </table>
-</div>
+
+   </div>
+
    
 </section>
+
+

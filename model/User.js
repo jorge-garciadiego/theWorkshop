@@ -30,7 +30,15 @@ const userSchema = new Schema({
       type: String,
       required: true
    },
-
+   picture:
+   {
+      type: String
+   },
+   role:
+   {
+      type: String,
+      default: "User"
+   },
    dateCreated:
    {
       type: Date,

@@ -1,34 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>{{title}}</title>
-</head>
+
+<link rel="stylesheet" href="/css/formBoot.css">
 <body>
    <div class="signUpWrapper">
       <div id="signUpForm" class="formUser">
          <div class="formWrap">
-            <h2 class="formTitle">Sign Up Here</h2>
-            <form class="userForm" action="/signup" method="POST">
-               <input type="text" class="input" id="firstName" name="firstName" placeholder="Enter First Name" value="{{this.actualFirst}}">
-               {{#if this.first}} <br><span class="errorMessage">{{this.first}}</span> {{/if}}
-               <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter Last Name" value="{{this.actualLast}}">
-               {{#if this.last}} <br><span class="errorMessage">{{this.last}}</span> {{/if}}
-               <input type="text" class="input" id="mailPhone" name="mailPhone" placeholder="Enter Email or Mobile Number" value="{{this.actualMail}}">
-               {{#if this.e_mail}} <br><span class="errorMessage">{{this.e_mail}}</span> {{/if}}
-               <input type="password" class="input" id="password" name="password" placeholder="Enter Password">
-               {{#if this.p_pass}} <br><span class="errorMessage">{{this.p_pass}}</span> {{/if}}
-               <input type="password" class="input" id="rePassword" name="rePassword" placeholder="Re-enter Password">
-               {{#if this.p_repass}} <br><span class="errorMessage">{{this.p_repass}}</span> {{/if}}
+            <form class="userForm" action="/signup" method="POST" enctype="multipart/form-data">
+                  <h2 class="formTitle">Sign Up Here</h2>
 
+               {{#if first}} <br><small class="errorMessage">{{first}}</small> {{/if}}
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text">
+                        <span>First Name</span>
+                     </div>
+                  </div>
+                  <input class="form-control" type="text" name="firstName" placeholder="Your name" value="{{actualFirst}}">
+               </div>
+
+               {{#if last}} <br><small class="errorMessage">{{last}}</small>{{/if}}
+               <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text">
+                        <span>Last Name</span>
+                     </div>
+                  </div>
+                  <input class="form-control" type="text" name="lastName" placeholder="Your lastname" value="{{actualLast}}">
+               </div>
+
+               {{#if e_mail}} <br><small class="errorMessage">{{e_mail}}</small> {{/if}}
+               <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text">
+                        <span><i class="fas fa-envelope"></i></span>
+                     </div>
+                  </div>
+                  <input class="form-control" type="text" name="mailPhone" placeholder="Enter Email or Mobile Number" value="{{actualMail}}">
+               </div>
+
+               {{#if p_pass}} <br><span class="errorMessage">{{p_pass}}</span> {{/if}}
+               <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text">
+                        <span><i class="fas fa-key"></i></span>
+                     </div>
+                  </div>
+                  <input class="form-control" type="password" name="password" placeholder="Enter Password">
+               </div>
+
+               {{#if p_repass}} <br><span class="errorMessage">{{p_repass}}</span> {{/if}}
+               <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text">
+                        <span><i class="fas fa-key"></i></span>
+                     </div>
+                  </div>
+                  <input class="form-control" type="password" name="rePassword" placeholder="Re-enter Password">
+               </div>
+
+                <div class="custom-file">
+                  <label class="custom-file-label" for="picture">Product Picture URL</label>
+                  <input class="custom-file-input" type="file" name="picture">
+               </div>
+               
                <div class="errosWrap">
                   {{#each errorMessages}}
                      <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
                   {{/each}}
                </div>
 
-               <input class="submitForm" id="submitBt" type="submit" value="Join Now">
+               <button class="btn btn-primary mt-1" type="submit">Join</button>
             </form>
          </div>
       </div>

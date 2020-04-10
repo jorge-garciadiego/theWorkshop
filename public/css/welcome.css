@@ -1,6 +1,17 @@
+
+.profileContainer{
+   box-shadow: 0 4px 10px 0 rgba(0,0,0,0.5);
+}
+
+.profile-card{
+   width: 400px;
+   margin: auto;
+   background: #fff;
+}
+
+
 .welcome{
    font-family: 'Architects Daughter', cursive;
-   height: 70vh;
    background: #333;
    color: #ccc;
    overflow: hidden;

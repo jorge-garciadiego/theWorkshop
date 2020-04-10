@@ -72,9 +72,9 @@ img{
 
 .boxContent{
    position: absolute;
-   height: 55%;
+   height: 50%;
    left: 0;
-   bottom: -20px;
+   bottom: -25px;
    width: 100%;
    font-family: 'Architects Daughter', cursive;
    font-size: 13px;

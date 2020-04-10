@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app"
   },
   "author": "Jorge Garciadiego",
   "license": "ISC",
@@ -18,5 +19,8 @@
     "express-session": "^1.17.0",
     "express-validator": "^6.4.0",
     "mongoose": "^5.9.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }

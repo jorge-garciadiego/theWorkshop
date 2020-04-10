@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="/css/welcome.css">
+   <title>{{title}}</title>
+</head>
+
+<section class="row profile profileContainer">
+   <div class="col-sm-8 welcome">
+      <div class="container">
+         <h1 class="welcomeH1">Administrator Profile
+
+         <span class="welcome-type" data-wait="3000" data-words='["{{user.firstName}}"]'></span> 
+         </h1>
+         <!-- data-wait is the specification of timte to wait after typing a word-->
+         <!-- data-wrods is the words that we want to type, this is going to be fetched an array from js-->
+
+      </div>
+   
+</div>
+
+<div class="col-sm-4 profile-card">
+   <img src="/uploads/usersPictures/{{user.picture}}" alt="" class="card-img-top">
+   <div class="card-body">
+      <h4 class="card-title">Profile</h4>
+      <p><i class="fas fa-user"></i>&nbsp;{{user.firstName}} {{user.lastName}}</p>
+      <p><i class="fas fa-at"></i>&nbsp;{{user.email}}</p>
+   </div>
+</div>
+</section>
+
+<script src="/js/welcome.js"></script>
+
+</html>

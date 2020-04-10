@@ -4,8 +4,10 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
    <link rel="stylesheet" href="/css/main.css">
-   <link rel="stylesheet" href="/css/forms.css">
+   
    <title>{{title}}</title>
 </head>
 <body>
@@ -20,17 +22,29 @@
           <a href="/">Home</a>
         </li>
         <li>
-          <a class="toSignUp" href="/login">Login</a> <!--"javascript:openLogin()"--> 
-        </li>
-        <li>
-          <a class="toSignUp" href="/signup">Sign Up</a>
-        </li>
-        <li>
           <a href="/products/list">Products</a>
         </li>
         <li>
           <a href="/contact-us">Contact Us</a>
         </li>
+
+        {{#if user}}
+
+            <li>
+            <a href="/logout">Logout</a>
+            </li>
+
+        {{else}}
+
+            <li>
+               <a class="toSignUp" href="/login">Login</a> <!--"javascript:openLogin()"--> 
+            </li>
+            <li>
+               <a class="toSignUp" href="/signup">Sign Up</a>
+            </li>
+            
+        {{/if}}
+         
       </ul>
     </nav>
 
@@ -83,10 +97,19 @@
             <div class="footer-menu-one">
                <ul>
                   <li><a href="/">Home</a></li>
-                  <li><a href="/login" target="_blank">Login</a></li>
-                  <li><a href="/signup" target="_blank">Sign Up</a></li>
-                  <li><a href="/products/list" target="blank">Products</a></li>
-                  <li><a href="/contact-us" target="blank">Contact Us</a></li>
+                  <li><a href="/products/list">Products</a></li>
+                  <li><a href="/contact-us">Contact Us</a></li>
+
+                  {{#if user}}
+
+                     <li><a href="/logout">Logout</a></li>
+
+                  {{else}}
+                     <li><a href="/login">Login</a></li>
+                     <li><a href="/signup">Sign Up</a></li>
+
+                  {{/if}}
+                   
                </ul>
             </div>
          </div>
