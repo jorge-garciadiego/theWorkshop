@@ -282,7 +282,7 @@ router.post("/add", isAuthenticated, isAdmin, (req,res)=>{
             })
             .then(()=>{
                
-               res.redirect("/products/list")
+               res.redirect("/products/inventory")
             })
             
          })
