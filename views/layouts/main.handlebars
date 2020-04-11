@@ -31,7 +31,10 @@
         {{#if user}}
 
             <li>
-            <a href="/logout">Logout</a>
+               <a href="/profile">Profile</a>
+            </li>
+            <li>
+               <a href="/logout">Logout</a>
             </li>
 
         {{else}}
@@ -102,6 +105,7 @@
 
                   {{#if user}}
 
+                     <li><a href="/profile">Profile</a></li>
                      <li><a href="/logout">Logout</a></li>
 
                   {{else}}

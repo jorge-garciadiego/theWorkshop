@@ -2,6 +2,11 @@
 <link rel="stylesheet" href="/css/formBoot.css">
 <body>
    <div class="signUpWrapper">
+
+      {{#each errors}}
+         <div>{{this}}</div>
+      {{/each}}
+
       <div id="signUpForm" class="formUser">
          <div class="formWrap">
             <form class="userForm" action="/signup" method="POST" enctype="multipart/form-data">

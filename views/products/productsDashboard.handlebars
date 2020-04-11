@@ -8,25 +8,23 @@
          </p>
       </div>
 
-      <form class="filter" action="/products" method="POST">
-         <select name="categories" id="categories">
+      
+      <form class="mb-2" method="POST" action="/products/list">
+      <div class="input-group">
+         <select class="custom-select" name="productSearch">
             <option value="all">All</option>
-            {{#each categories}}
-               
-               <option value="{{title}}">{{title}}</option>
+               {{#each categories}}
+                  
+                  <option value="{{title}}">{{title}}</option>
 
-            {{/each}}
-           
-      </select>
-         <div class="searchField">
-            <input type="text" class="input" placeholder="Search">
+               {{/each}}
+
+         </select>
+         <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
          </div>
-
-         <button class="search" id="searchBt" type="submit">
-            <i class="fas fa-search"></i>
-         </button>
-         
-      </form>
+      </div>
+   </form>
 
       <main class="productsGrid">
          {{#each data}}

@@ -11,15 +11,29 @@
          <ul class="icons">
             <li class="icon"><a href=""><i class="fas fa-heart"></i></a></li>
             <li class="icon"><a href=""><i class="fas fa-paint-brush"></i></a></li>
-            <li class="iconMenu" id="toMenu" data='["Menu"]'><i class="fas fa-dice-d6"></i></li>
+                     
+            <li class="iconMenu to " id="toMenu" data='["Profile"]'><a href="/profile"><i class="fas fa-dice-d6"></i></a></li>
+            
             <li class="icon"><a href=""><i class="fas fa-brain"></i></a></li>
             <li class="icon"><a href=""><i class="fas fa-pencil-alt"></i></a></li>
             <li class="icon"><a href=""><i class="fas fa-lightbulb"></i></a></li>
+            
+            {{#if user}}
+            <li class="iconMenu to " id="toSignUP" data='["Logout"]'><a href="/logout"><i class="fas fa-user-plus"></i></a></li>
+            {{else}}
             <li class="iconMenu to " id="toSignUP" data='["Sign Up"]'><a href="/signup"><i class="fas fa-user-plus"></i></a></li>
+            {{/if}}
+            
             <li class="icon"><a href=""><i class="fas fa-pencil-alt"></i></a></li>
             <li class="icon"><a href=""><i class="fas fa-ruler"></i></a></li>
             <li class="icon"><a href=""><i class="fas fa-pen-alt"></i></a></li>
+            
+            {{#if user}}
+            <li class="iconMenu" id="toLogin" data='["Logout"]'><a href="/logout"><i class="fas fa-user-astronaut"></i></a></li>
+            {{else}}
             <li class="iconMenu" id="toLogin" data='["Login"]'><a href="/login"><i class="fas fa-user-astronaut"></i></a></li>
+            {{/if}}
+
             <li class="icon"><a href=""><i class="fas fa-brush"></i></a></li>
             <li class="icon"><a href=""><i class="fas fa-cut"></i></a></li>
             <li class="icon"><a href=""><i class="fas fa-highlighter"></i></a></li>
@@ -47,7 +61,7 @@
          
          {{#each data}}
             <div class="singleBox">
-               <img src="/uploads/{{this.productPic}}" alt="">
+              <a href="/products/profile/{{id}}"><img src="/uploads/{{this.productPic}}" alt=""></a> 
       
             <div class="boxContent">
                <div class="itemTitle bsTitle">

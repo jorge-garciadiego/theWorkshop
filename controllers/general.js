@@ -191,7 +191,7 @@ router.post("/signup", (req, res)=>{
       valid = false;
    }
 
-   if (!patterns.password.test(rePassword) && password != rePassword){
+   if (password != rePassword){
       errors.push({description: "password re-entered invalid"});
       repass = `Password re-entered doesn't match`;
       valid = false;
@@ -213,70 +213,95 @@ router.post("/signup", (req, res)=>{
          actualMail: mailLabel
       });
    }else{
-
-         const newUser = 
-         {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.mailPhone,
-            password: req.body.password,
-            picture: req.body.picture
-         }
-
-         const user = new userModel(newUser);
          
-         user.save()
-         .then((user)=>{
-            req.files.picture.name = `user_pic${user._id}${path.parse(req.files.picture.name).name}${path.parse(req.files.picture.name).ext}`;
-   
-            req.files.picture.mv(`public/uploads/usersPictures/${req.files.picture.name}`)
-            .then(()=>{
-   
-               userModel.updateOne({_id:user._id},{
-                  picture: req.files.picture.name
-               })
+      //Check to see if the users email is in the database
+      userModel.findOne({email:mailPhone})
+      .then((person)=>{
+         
+         const errors =[];
+            
+         if(person != null){
+            //no matching email
+            errors.push("Sorry, your email is already registrated");
+            res.render("general/signup",{
+               errors,
+               title: "Welcome",
+               errorMessages: errors,
+               first: fName,
+               last: lname,
+               actualFirst: firstLabel,
+               actualLast: lastLabel,
+            })
+
+         } else {
+            
+            const newUser = 
+            {
+               firstName: req.body.firstName,
+               lastName: req.body.lastName,
+               email: req.body.mailPhone,
+               password: req.body.password,
+               picture: req.body.picture
+            }
+
+            const user = new userModel(newUser);
+            
+            
+            user.save()
+            .then((user)=>{
+               req.files.picture.name = `user_pic${user._id}${path.parse(req.files.picture.name).name}${path.parse(req.files.picture.name).ext}`;
+      
+               req.files.picture.mv(`public/uploads/usersPictures/${req.files.picture.name}`)
                .then(()=>{
-
-                  // using Twilio SendGrid's v3 Node.js Library
-                  // https://github.com/sendgrid/sendgrid-nodejs
-                  const sgMail = require('@sendgrid/mail');
-                  sgMail.setApiKey(`${process.env.SEND_GRID_API_KEY}`);
-                  const msg = {
-                  to: `${mailPhone}`,
-                  from: `jorge.garciadiego@gmail.com`,
-                  subject: 'the Workshop message submit',
-                  html: 
-                  `Visitor's ${firstName} ${lastName} <br>
-                  Email address: ${mailPhone}; <br>
-                  Subject: "Welcome" <br>
-                  Message; [Welcome to the Workshop]
-                  `,
-                  };
-
-                  sgMail.send(msg)
-                  .then(()=>{
-                     console.log(`Email sent`);
-                     res.redirect("/login");
+      
+                  userModel.updateOne({_id:user._id},{
+                     picture: req.files.picture.name
                   })
-                  .catch(err=>{
-                     console.log(`Error ${err}`);
+                  .then(()=>{
+
+                     // using Twilio SendGrid's v3 Node.js Library
+                     // https://github.com/sendgrid/sendgrid-nodejs
+                     const sgMail = require('@sendgrid/mail');
+                     sgMail.setApiKey(`${process.env.SEND_GRID_API_KEY}`);
+                     const msg = {
+                     to: `${mailPhone}`,
+                     from: `jorge.garciadiego@gmail.com`,
+                     subject: 'the Workshop message submit',
+                     html: 
+                     `Visitor's ${firstName} ${lastName} <br>
+                     Email address: ${mailPhone}; <br>
+                     Subject: "Welcome" <br>
+                     Message; [Welcome to the Workshop]
+                     `,
+                     };
+
+                     sgMail.send(msg)
+                     .then(()=>{
+                        console.log(`Email sent`);
+                        res.redirect("/login");
+                     })
+                     .catch(err=>{
+                        console.log(`Error ${err}`);
+                     })
+                     
                   })
                   
                })
-               
-            })
-            }).catch(err=>{
-               console.log(`Error entring into de data ${err}`);
-            });
-         //Asynchornous operation 
+               }).catch(err=>{
+                  console.log(`Error entring into de data ${err}`);
+               });
+                     
+                  
          }
+         })
+         .catch(err=>console.log(`Error ${err}`));
+   }})
 
-})
 
 //Login Route
 router.get("/login", (req,res)=>{
    res.render("general/login", {
-      title: "Welcome Back"
+      title: "Login"
    });
 });
 
@@ -355,7 +380,7 @@ router.post("/login", (req, res) => {
             })
             .catch(err=>console.log(`Error ${err}`));
          }
-      }) 
+      }) .catch(err=>console.log(`Error ${err}`));
 
       //res.redirect("/welcome");
       //console.log("Login successful!!");

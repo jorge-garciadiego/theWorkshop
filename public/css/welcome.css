@@ -3,9 +3,8 @@
    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.5);
 }
 
-.profile-card{
-   width: 400px;
-   margin: auto;
+.profileCard{
+   width: 200px;
    background: #fff;
 }
 

@@ -1,52 +1,69 @@
 
 <link rel="stylesheet" href="/css/inventory.css">
+<link rel="stylesheet" href="/css/welcome.css">
 
 
-<h2>Inventory Dashboard</h2>
+ <section class="row mb-4 dashboardTop">
 
-    <section id="actions" class="py-4 mb-4 big-light">
-       <div class="container">
+   <div class="col-sm-3  offset-sm-2 card profileCard">
+     <div class="card-img-top">
+        <img src="/uploads/usersPictures/{{user.picture}}" alt="" class="card-img profilePic">
+     </div>
+
+     <ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="card-text fas fa-user"></i>&nbsp;{{user.firstName}} {{user.lastName}}</li> 
+        <li class="list-group-item"><i class="fas fa-at"></i>&nbsp;{{user.email}}</li>
+     </ul> 
+   </div>
+
+
+
+   <div id="actions" class="col-sm-4 py-4 mb-4 big-light">
           <div class="row">
-             <div class="col-md-4">
-                <a href="/products/add" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
+             <h2 class="col-sm-12 text-center">{{user.role}} Dashboard</h2>
+             <div class="col-sm-12">
+                <a href="/products/add" class="btn btn-block" data-toggle="modal" data-target="#addPostModal">
                    <i class="fas fa-plus"></i> Add a Product
                 </a>
              </div>
-             <div class="col-md-4">
-                <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
+             <div class="col-sm-12">
+                <a href="#" class="btn btn-block" data-toggle="modal" data-target="#addCategoryModal">
                    <i class="fas fa-plus"></i> Add Category
                 </a>
              </div>
-             <div class="col-md-4">
-                <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
+             <div class="col-sm-12">
+                <a href="#" class="btn btn-block" data-toggle="modal" data-target="#addUserModal">
                    <i class="fas fa-plus"></i> Add User
                 </a>
              </div>
-          </div>
-       </div>
-    </section>
 
-<section class="inventory">
-
-   <form action="POST" action="">
-      <div class="form-group mb-3">
-         <select class="form-control" name="productSearch">
-              <option value="all">All</option>
-            {{#each categories}}
                
-               <option value="{{title}}">{{title}}</option>
+          
+          </div>
+   </div>
+   
+ </section>
+  
+  <form class="col-sm-4 offset-sm-7 mb-2" method="POST" action="/products/inventory">
+      <div class="input-group">
+         <select class="custom-select" name="productSearch">
+            <option value="all">All</option>
+               {{#each categories}}
+                  
+                  <option value="{{title}}">{{title}}</option>
 
-            {{/each}}
+               {{/each}}
+
          </select>
          <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
          </div>
-         
       </div>
-     
    </form>
 
-   <div class="container">
+<section class="inventory"></section>
+   <div class="container adminDashboard">
+
          <ul class="row text-center">
             <li class="col-sm">Picture</li>
             <li class="col-sm">Name</li>
@@ -60,26 +77,26 @@
          {{#each data}}
             <ul class="row text-center gridRow">
                <li class="col">
-                  <span><img class="w-100" src="/uploads/{{this.productPic}}"alt=""></span>
+                  <span><img class="w-100" src="/uploads/{{productPic}}"alt=""></span>
                </li>
                <li class="col-sm">
-                  <span>{{this.title}}</span>
+                  <span>{{title}}</span>
                </li>
                <li class="col-sm">
-                  <span>{{this.category}}</span>
+                  <span>{{category}}</span>
                </li>
                <li class="col-sm">
-                  <span>{{this.price}}</span>
+                  <span>{{price}}</span>
                </li>
                <li class="col-sm">
-                  <span>{{this.bestSeller}}</span>
+                  <span>{{bestSeller}}</span>
                </li>
                <li class="col-sm">
-                  <span>{{this.stock}}</span>
+                  <span>{{stock}}</span>
                </li>
                <li class="col-sm">
-                  <a href="/products/edit/{{this.id}}" class="btn">Edit</a>
-                  <a href="/products/delete/{{this.id}}?method=DELETE" class="btn">Delete</a>
+                  <a href="/products/edit/{{id}}" class="btn btn-block">Edit</a>
+                  <a href="/products/delete/{{id}}?method=DELETE" class="btn btn-block">Delete</a>
                </li>
             </ul>
 

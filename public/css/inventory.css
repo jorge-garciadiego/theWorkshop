@@ -9,7 +9,7 @@ li{
    list-style: none;
 }
 
-.container{
+.adminDashboard{
    background: #DDC4E8;
    border-radius: 5px;
    color: #595956;
@@ -28,6 +28,7 @@ li{
    border-bottom: solid #F0F2F0;
    border-width: thin;
 }
+
 
 .btn{
    background: #BDD8E8;

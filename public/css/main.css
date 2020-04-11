@@ -25,11 +25,10 @@ body{
 }
 
 button {
-   width: 80px;
    background: #A66D78;
    border: 0;
    padding: 10px 20px;
- }
+}
 
  button:hover{
     cursor: pointer;
