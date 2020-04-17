@@ -29,16 +29,16 @@
       <main class="productsGrid">
          {{#each data}}
             <div class="singleBox">
-               <img src="/uploads/{{this.productPic}}" alt="">
+               <img src="/uploads/{{productPic}}" alt="">
       
             <div class="boxContent">
                <div class="itemTitle bsTitle">
-                  <h3 class="titleName">{{this.title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{this.cateory}}</h3>
+                  <h3 class="titleName">{{title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{cateory}}</h3>
                </div>
                 
                <div class="productData">
-                  <p>Artist: <a class="dataArt" href="#">{{this.artist}}</a></p>
-                  <p>Price: ${{this.price}}</p>
+                  <p>Artist: <a class="dataArt" href="#">{{artist}}</a></p>
+                  <p>Price: ${{price}}</p>
                </div>
 
                <a class="aProduct btn" href="#">Add to Cart</a>

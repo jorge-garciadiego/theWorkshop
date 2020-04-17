@@ -12,115 +12,13 @@
 </head>
 <body>
    
-   <nav class="menu">
-      <button aria-expanded="false" aria-controls="menu-list">
-        <span class="open">☰</span>
-        <span class="close">×</span>
-      </button>
-      <ul id="menu-list">
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/products/list">Products</a>
-        </li>
-        <li>
-          <a href="/contact-us">Contact Us</a>
-        </li>
-
-        {{#if user}}
-
-            <li>
-               <a href="/profile">Profile</a>
-            </li>
-            <li>
-               <a href="/logout">Logout</a>
-            </li>
-
-        {{else}}
-
-            <li>
-               <a class="toSignUp" href="/login">Login</a> <!--"javascript:openLogin()"--> 
-            </li>
-            <li>
-               <a class="toSignUp" href="/signup">Sign Up</a>
-            </li>
-            
-        {{/if}}
-         
-      </ul>
-    </nav>
-
-
-      <!-- Temporal unable
-      
-      <div id="signUpForm" class="formUser">
-      <span class="closeBtn" onclick="closeForm()" title="Close"> &#215 </span>
-         <div class="formWrap">
-            <h2 class="formTitle">Sign Up Here</h2>
-            <form action="/" method="POST">
-               <input type="text" class="input" id="firstName" name="firstName" placeholder="Enter First Name">
-               <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter Last 
-               Name">
-               <input type="text" class="input" id="mailPhone" name="mailPhone" placeholder="Enter Email or Mobile Number">
-               <input type="password" class="input" id="password" name="password" placeholder="Enter Password">
-               <input type="password" class="input" id="rePassword" name="rePassword" placeholder="Re-enter Password">
-               <input class="submitForm" type="submit" value="Join Now">
-            </form>
-         </div>
-      </div>
-
-      <div id="loginForm" class="formUser">
-         <span class="closeBtn" onclick="closeLogin()" title="Close"> &#215 </span>
-            <div class="formWrap">
-               <h2 class="formTitle">Login</h2>
-               <form action="/" method="POST">
-                  <input type="text" class="input" id="username" name="username" placeholder="Username">
-                  <input type="password" class="input" id="loginPass" name="loginPass" placeholder="Password">
-                  <input class="submitForm" type="submit" value="Login">
-               </form>
-            </div>
-      </div>
-    -->
-
+      {{> nav}}
    <main>
       {{{body}}}
    </main>
 
-   <footer>
-         <div class="footer-main-div">
-
-            <div class="s-m">
-               <a id="facebook" href="https://www.facebook.com/iorch.garciadiego"><i class="fab fa-facebook-f"></i></a>
-               <a id="instagram" href="https://www.instagram.com/iorch.north/"><i class="fab fa-instagram"></i></a>
-               <a id="twitter" href="https://twitter.com/igarciadiego"><i class="fab fa-twitter"></i></a>
-               <a id="youtube" href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-            </div>   
-
-            <div class="footer-menu-one">
-               <ul>
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/products/list">Products</a></li>
-                  <li><a href="/contact-us">Contact Us</a></li>
-
-                  {{#if user}}
-
-                     <li><a href="/profile">Profile</a></li>
-                     <li><a href="/logout">Logout</a></li>
-
-                  {{else}}
-                     <li><a href="/login">Login</a></li>
-                     <li><a href="/signup">Sign Up</a></li>
-
-                  {{/if}}
-                   
-               </ul>
-            </div>
-         </div>
-
-      </footer>
-
    <script src="/js/menuButton.js"></script>
    <script src="/js/form.js"></script>
+      {{> footer}}
 </body>
 </html>

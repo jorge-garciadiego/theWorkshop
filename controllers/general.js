@@ -8,6 +8,8 @@ const productModel = require("../model/product");
 
 const catModel = require("../model/cat");
 
+const Cart = require("../model/cart");
+
 const bcrypt = require("bcryptjs");
 
 const path = require("path");
@@ -15,6 +17,7 @@ const path = require("path");
 const isAuthenticated = require("../middleware/auth");
 
 const dashboardLoader = require("../middleware/authorization");
+
 //Home Route
 router.get("/", (req, res)=>{
 
@@ -504,6 +507,48 @@ router.get("/logout",(req,res)=>{
    req.session.destroy();
    res.redirect("/login")
 })
+
+// CART
+router.get("/add-to-cart/:id", (req,res)=>{
+   
+   let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+   productModel.findById(req.params.id)
+   .then((product)=>{
+      
+      cart.add(product, product.id);
+      req.session.cart = cart;
+      console.log(req.session.cart);
+      res.redirect('/');
+      
+   })
+   .catch(err=>`Error pulling the document from the database ${err}`);
+   
+})
+
+
+router.get('/cart', (req,res, next)=>{
+
+   if(!req.session.cart){
+      res.render('general/shoppingCart',{
+         title: "Shopping Cart",
+         products: null
+      });
+   }
+      
+      console.log("Flag1");
+      let cart= new Cart(req.session.cart);
+      console.log("Flag2");
+      res.render("general/shoppingCart", {
+         title: "Shopping Cart",
+         products: cart.generateArray(),
+         totalPrice: cart.totalPrice
+      });
+      console.log(req.session.cart);
+      }
+   );
+  
+
 
 module.exports = router;
 

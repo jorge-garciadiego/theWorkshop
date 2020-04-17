@@ -1,0 +1,44 @@
+
+  <nav class="menu">
+      <button  aria-expanded="false" aria-controls="menu-list">
+        <span class="open">☰</span>
+        <span class="close">×</span>
+      </button>
+      <button>
+         <i class="fas fa-shopping-bag"></i>
+         <span class="badge">{{cart.totalQty}}</span>
+      </button>
+      <ul id="menu-list">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/products/list">Products</a>
+        </li>
+        <li>
+          <a href="/contact-us">Contact Us</a>
+        </li>
+
+        {{#if user}}
+
+            <li>
+               <a href="/profile">Profile</a>
+            </li>
+            <li>
+               <a href="/logout">Logout</a>
+            </li>
+
+        {{else}}
+
+            <li>
+               <a class="toSignUp" href="/login">Login</a>
+            </li>
+            <li>
+               <a class="toSignUp" href="/signup">Sign Up</a>
+            </li>
+            
+        {{/if}}
+         
+      </ul>
+    </nav>
+    

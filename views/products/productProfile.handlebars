@@ -1,25 +1,26 @@
 
 
-{{title}}
+<section class="row productProfile">
 
-{{artist}}
-
-<section class="productProfile">
-
-   <div class="card mb-3" style="max-width: 500px;">
-      <img src="/uploads/{{productPic}}" alt="" class="card-img-top">
-      <div class="card-body">
-         <h5 class="card-title">{{title}}</h5>
-         <p class="card-text"> Artist: {{artist}} </p>
+   <h2 class="col-sm-4 offset-sm-3">{{title}}</h2>
+   <h2 class="col-sm-3 offset-sm-1 mb-5">{{price}}</h2>
+   <div class="col-sm-4 offset-sm-3">
+      <div class="card mb-3" style="max-width: 500px;">
+         <img src="/uploads/{{productPic}}" alt="" class="card-img-top">
+         <div class="card-body">
+            <h5 class="card-title">By: {{artist}}</h5>
+         </div>
       </div>
    </div>
 
-   <div class="description">
-      <div>
+   <div class="col-sm-3 offset-sm-1 description">
+       <label>
+           <input  class="mb-2" type="number" value="1" min="1" max="5" step="1"/>
+       </label>
+
+       <div>
          <p>{{description}}</p>
       </div>
-
-      <input type="number" value="1" min="1" max="10" step="1"/>
    </div>
 
 </section>
