@@ -1,7 +1,5 @@
 
 <link rel="stylesheet" href="/css/inventory.css">
-<link rel="stylesheet" href="/css/welcome.css">
-
 
  <section class="row mb-4 dashboardTop">
 
@@ -22,9 +20,7 @@
           <div class="row">
              <h2 class="col-sm-12 text-center">{{user.role}} Dashboard</h2>
              <div class="col-sm-12">
-                <a href="/products/add" class="btn btn-block" data-toggle="modal" data-target="#addPostModal">
-                   <i class="fas fa-plus"></i> Add a Product
-                </a>
+                <a class="btn btn-block" href="/products/add" ><i class="fas fa-plus"></i> Add a Product</a>
              </div>
              <div class="col-sm-12">
                 <a href="#" class="btn btn-block" data-toggle="modal" data-target="#addCategoryModal">
@@ -36,9 +32,6 @@
                    <i class="fas fa-plus"></i> Add User
                 </a>
              </div>
-
-               
-          
           </div>
    </div>
    
@@ -47,7 +40,7 @@
   <form class="col-sm-4 offset-sm-7 mb-2" method="POST" action="/products/inventory">
       <div class="input-group">
          <select class="custom-select" name="productSearch">
-            <option value="all">All</option>
+            <option value="">All</option>
                {{#each categories}}
                   
                   <option value="{{title}}">{{title}}</option>

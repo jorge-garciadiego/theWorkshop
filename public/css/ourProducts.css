@@ -8,6 +8,22 @@
 
 }
 
+.prodTitle{
+   font-family: 'Pacifico', sans-serif;
+}
+
+/* Search-bar form */
+.prodSearch{
+   max-width: 400px;
+   margin: auto;
+}
+
+.prodBtn{
+   background: #A16FFC;
+}
+
+/*Search-bar form*/
+
 .btn{
    color: #F2E744;
 }

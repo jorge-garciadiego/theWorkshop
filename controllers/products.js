@@ -437,4 +437,48 @@ router.post("/inventory", isAuthenticated, isAdmin,(req,res)=>{
    .catch(err=>console.log(`Error getting the product documents from the Database${err}`));
 })
 
+
+router.post("/list",(req,res)=>{
+   
+   const{productSearch} = req.body;
+
+    productModel.find({category:productSearch})
+   .then((products)=>{
+      const filteredProducts = products.map(product=>{
+         return{
+            id: product._id,
+            bestSeller: product.bestSeller,
+            title: product.title,
+            artist:product.artist,
+            category: product.category,
+            price: product.price,
+            stock: product.stock,
+            productPic: product.productPic
+         }
+      });
+
+      catModel.find()
+      .then((cats)=>{
+
+         const filteredCat = cats.map(cat=>{
+            return{
+               id: cat._id,
+               title: cat.title,
+               description: cat.description,
+               colour: cat.colour
+            }
+         });
+
+         res.render("products/list", {
+            title: "Products",
+            heading: "Our Products",
+            data: filteredProducts,
+            categories: filteredCat     
+         });
+      })
+      .catch(err=>console.log(`Error happend pulling Categories from the database ${err}`))
+   })
+   .catch(err=>console.log(`Error getting the product documents from the Database${err}`));
+})
+
 module.exports = router;

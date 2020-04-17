@@ -73,45 +73,33 @@ router.get("/", (req, res)=>{
    for now login and sign Up have their oun view
 app.post("/", (req, res) =>{
    const errors = [];
-
    const patterns = {
       email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
    }
-
    if (req.body.firstName=="") {
       errors.push({firstName:"You must eneter your first Name"});
    }
-
    if (req.body.lastName==""){
       errors.push({lastName:"You must enter your last Name"});
    }
-
    if (!patterns.email.test(req.body.mailPhone)){
       console.log(patterns.email.test(req.body.mailPhone));
       errors.push({email:"You must eneter a valid email or phone number"});
    }
-
    if (req.body.password==""){
       errors.push({password:"You must enter a password"});
    }
-
    if (req.body.rePassword==""){
       errors.push({rePassword:"You must re enter the password"});
    }
-
-
    //Validating login
-
    if (req.body.username=="") {
       errors.push({username:"Must enter Your username"});
    }
-
    if (req.body.loginPass=="") {
       errors.push({password:"Must enter Your password"});
    }
-
    //If validation fails
-
    if (errors.length > 0){
       res.render("home", {
          title: "the Workshop",
@@ -128,8 +116,6 @@ app.post("/", (req, res) =>{
       console.log("Sign Up correct!!");
    }
 })
-
-
 */
 
 //Sign Up Route
@@ -519,7 +505,7 @@ router.get("/add-to-cart/:id", (req,res)=>{
       cart.add(product, product.id);
       req.session.cart = cart;
       console.log(req.session.cart);
-      res.redirect('/');
+      res.redirect('/products/list');
       
    })
    .catch(err=>`Error pulling the document from the database ${err}`);
@@ -529,16 +515,14 @@ router.get("/add-to-cart/:id", (req,res)=>{
 
 router.get('/cart', (req,res, next)=>{
 
-   if(!req.session.cart){
-      res.render('general/shoppingCart',{
-         title: "Shopping Cart",
-         products: null
-      });
-   }
+      if(!req.session.cart){
+         return res.render("general/shoppingCart",{
+            products: null
+         });
+      }
       
-      console.log("Flag1");
       let cart= new Cart(req.session.cart);
-      console.log("Flag2");
+
       res.render("general/shoppingCart", {
          title: "Shopping Cart",
          products: cart.generateArray(),

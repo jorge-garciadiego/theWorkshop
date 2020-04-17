@@ -1,44 +1,37 @@
 
-  <nav class="menu">
-      <button  aria-expanded="false" aria-controls="menu-list">
-        <span class="open">☰</span>
-        <span class="close">×</span>
+  <nav class="navbar navbar-expand-sm navbar-dark mb-5 navMenu">
+    <div class="container">
+      <a class="navbar-brand" href="/">the Workshop</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <button>
-         <i class="fas fa-shopping-bag"></i>
-         <span class="badge">{{cart.totalQty}}</span>
-      </button>
-      <ul id="menu-list">
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/products/list">Products</a>
-        </li>
-        <li>
-          <a href="/contact-us">Contact Us</a>
-        </li>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            {{#if user}}
+              <a href="/profile" class="nav-link">Profile &#32;<i class="far fa-user"></i></a>
+            {{else}}
+              <a href="/login" class="nav-link">Login &#32;<i class="far fa-user"></i></a>
+            {{/if}}
+          </li>
+          <li class="nav-item">
+            <a href="/cart" class="nav-link"><i class="fas fa-shopping-cart"></i><span class="badge badge-pill">{{cart.totalQty}}</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="/products/list" class="nav-link">Products</a>
+          </li>
+          <li class="nav-item">
+            {{#if user}}
+              <a href="/logout" class="nav-link">Logout</a>
+            {{else}}
+              <a href="/signup" class="nav-link">Signup</a>
+            {{/if}}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact-us">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-        {{#if user}}
-
-            <li>
-               <a href="/profile">Profile</a>
-            </li>
-            <li>
-               <a href="/logout">Logout</a>
-            </li>
-
-        {{else}}
-
-            <li>
-               <a class="toSignUp" href="/login">Login</a>
-            </li>
-            <li>
-               <a class="toSignUp" href="/signup">Sign Up</a>
-            </li>
-            
-        {{/if}}
-         
-      </ul>
-    </nav>
-    

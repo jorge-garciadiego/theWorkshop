@@ -1,15 +1,7 @@
 <link rel="stylesheet" href="/css/ourProducts.css">
 <section class="products">
 
-   <div class="container">
-      <div class="head">
-         <h1>{{heading}}</h1>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus sapiente explicabo architecto excepturi, ipsam provident at eaque magnam nemo? Consectetur?
-         </p>
-      </div>
-
-      
-      <form class="mb-2" method="POST" action="/products/list">
+   <form class="prodSearch mb-2" method="POST" action="/products/list">
       <div class="input-group">
          <select class="custom-select" name="productSearch">
             <option value="all">All</option>
@@ -21,7 +13,7 @@
 
          </select>
          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit">Search</button>
+            <button class="btn aProduct" type="submit">Search</button>
          </div>
       </div>
    </form>
@@ -29,19 +21,19 @@
       <main class="productsGrid">
          {{#each data}}
             <div class="singleBox">
-               <img src="/uploads/{{productPic}}" alt="">
+               <a href="/products/profile/{{id}}"><img src="/uploads/{{this.productPic}}" alt=""></a> 
       
-            <div class="boxContent">
-               <div class="itemTitle bsTitle">
-                  <h3 class="titleName">{{title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{cateory}}</h3>
-               </div>
+                  <div class="boxContent">
+                     <div class="itemTitle bsTitle">
+                        <h3 class="titleName">{{title}}</h3> &nbsp | &nbsp <h3 class="titleCat">{{cateory}}</h3>
+                  </div>
                 
-               <div class="productData">
-                  <p>Artist: <a class="dataArt" href="#">{{artist}}</a></p>
-                  <p>Price: ${{price}}</p>
-               </div>
+                  <div class="productData">
+                     <p>Artist: <a class="dataArt" href="#">{{artist}}</a></p>
+                     <p>Price: ${{price}}</p>
+                  </div>
 
-               <a class="aProduct btn" href="#">Add to Cart</a>
+               <a class="aProduct btn" href="/add-to-cart/{{id}}">Add to Cart</a>
                
             </div>
          

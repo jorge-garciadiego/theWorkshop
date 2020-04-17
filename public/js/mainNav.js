@@ -3,6 +3,7 @@ const signUP = document.querySelector('#toSignUP');
 const login = document.querySelector('#toLogin');
 const products = document.querySelector('#toProducts');
 const contact =document.querySelector('#toContact');
+const shopping = document.querySelector('#toCart');
 
 
 menu.addEventListener('mouseover', ()=>{
@@ -53,4 +54,16 @@ contact.addEventListener('mouseover', ()=>{
 contact.addEventListener('mouseout',()=> {
    document.querySelector('.txt-type').innerHTML = '';
 })
+
+shopping.addEventListener('mouseover', ()=>{
+   const word = JSON.parse(document.querySelector('#toCart').getAttribute('data'));
+
+   document.querySelector('.txt-type').innerHTML = `${word}`;
+})
+
+shopping.addEventListener('mouseout',()=> {
+   document.querySelector('.txt-type').innerHTML = '';
+})
+
+
 

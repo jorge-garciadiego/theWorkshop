@@ -1,25 +1,25 @@
+<link rel="stylesheet" href="/css/product.css">
 
+<section>
 
-<section class="row productProfile">
-
-   <h2 class="col-sm-4 offset-sm-3">{{title}}</h2>
-   <h2 class="col-sm-3 offset-sm-1 mb-5">{{price}}</h2>
-   <div class="col-sm-4 offset-sm-3">
-      <div class="card mb-3" style="max-width: 500px;">
-         <img src="/uploads/{{productPic}}" alt="" class="card-img-top">
-         <div class="card-body">
-            <h5 class="card-title">By: {{artist}}</h5>
-         </div>
+   <div class="card mb-5 prodCard" style="max-width: 500px;">
+      <img src="/uploads/{{this.productPic}}" class="img-fluid card-img-top" alt="...">
+      <div class="card-body">
+         <h5 class="card-title prodTitle" style="text-align: center;">{{title}}</h5>
+         <p class="card-text">{{description}}</p>
       </div>
-   </div>
-
-   <div class="col-sm-3 offset-sm-1 description">
-       <label>
-           <input  class="mb-2" type="number" value="1" min="1" max="5" step="1"/>
-       </label>
-
-       <div>
-         <p>{{description}}</p>
+      <ul class="list-group list-group-flush">
+         <li class="list-group-item d-flex justify-content-between align-items-center">
+            Price
+            <span class="badge badge-primary badge-pill">{{price}}</span>
+         </li>
+         <li class="list-group-item d-flex justify-content-between align-items-center">Artist: 
+           <span>{{artist}}</span> 
+         </li>
+         
+      </ul>
+      <div class="card-body">
+         <a class="aProduct btn btn-dark" href="/add-to-cart/{{this._id}}">Add to Cart</a>
       </div>
    </div>
 
