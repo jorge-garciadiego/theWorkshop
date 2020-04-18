@@ -145,6 +145,7 @@ router.post("/signup", (req, res)=>{
    let firstLabel;
    let lastLabel;
    let mailLabel;
+   
 
    //Object with the javascript REGEX patterns
    const patterns = {
@@ -495,7 +496,7 @@ router.get("/profile", isAuthenticated, dashboardLoader);
 router.get("/logout",(req,res)=>{
 
    req.session.destroy();
-   res.redirect("/login")
+   res.redirect("/")
 })
 
 // CART
@@ -635,7 +636,7 @@ router.get('/cart', (req,res, next)=>{
             //Asynchornous operation
             sgMail.send(msg)
             .then(()=>{
-               req.session.destroy();            
+               req.session.cart = null;            
                res.redirect("/");
             })
             .catch(err=>{

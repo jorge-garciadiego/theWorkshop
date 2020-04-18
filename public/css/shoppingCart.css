@@ -1,0 +1,11 @@
+
+.cartGrid{
+   grid-gap: 20px;
+   text-align: center;
+   justify-content: center;
+}
+
+.singleBox{
+   padding: 0;
+   box-shadow: 0 2px 10px #D9A3A3;
+}

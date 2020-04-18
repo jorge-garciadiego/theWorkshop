@@ -2,7 +2,7 @@ const dashboardLoader = (req,res)=>{
 
    if(req.session.userInfo.role == "Admin"){
 
-      res.redirect("products/inventory")
+      res.redirect("products/admin")
 
    }else{
 

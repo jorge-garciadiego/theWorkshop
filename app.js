@@ -23,6 +23,7 @@ require('dotenv').config({path:"./config/keys.env"});
 const adminRoutes = require("./controllers/admin");
 const productRoutes = require("./controllers/products");
 
+
 //Create the express app object
 const app = express();
 
@@ -94,6 +95,7 @@ app.use((req,res,next)=>{
 //Maps EXPRESS TO ALL OUR ROUTER OBJECTS
 app.use("/", adminRoutes);
 app.use("/products", productRoutes);
+
 
 // Connection method that connects mongoose to MongoDB
 //This method is an assincronous operation

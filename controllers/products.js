@@ -125,7 +125,7 @@ router.post("/list", (req, res)=>{
 });
 
 
-router.get("/inventory", isAuthenticated, isAdmin,(req,res)=>{
+router.get("/admin", isAuthenticated, isAdmin,(req,res)=>{
    const{productSearch} = req.body;
    productModel.find()
    .then((products)=>{
@@ -154,7 +154,7 @@ router.get("/inventory", isAuthenticated, isAdmin,(req,res)=>{
             }
          });
 
-         res.render("products/productsInventory", {
+         res.render("products/adminDashboard", {
             title: "Products",
             heading: "Our Products",
             data: filteredProducts,
@@ -282,7 +282,7 @@ router.post("/add", isAuthenticated, isAdmin, (req,res)=>{
             })
             .then(()=>{
                
-               res.redirect("/products/inventory")
+               res.redirect("/products/admin")
             })
             
          })
@@ -333,7 +333,7 @@ router.put("/update/:id", isAuthenticated, isAdmin, (req,res)=>{
    }
       productModel.updateOne({_id:req.params.id}, product)
       .then(()=>{
-         res.redirect("/products/inventory")
+         res.redirect("/products/admin")
       })
       .catch(err=>`Error updating the document into the database ${err}`)
          /*
@@ -361,7 +361,7 @@ router.delete("/delete/:id", isAuthenticated, isAdmin, (req,res)=>{
 
    productModel.deleteOne({_id:req.params.id})
    .then(()=>{
-      res.redirect("/products/inventory");
+      res.redirect("/products/admin");
    })
    .catch(err=>`Error deleting the document into the database ${err}`)
 })
@@ -394,7 +394,7 @@ router.get("/profile/:id", (req,res)=>{
 
 
 // The search route
-router.post("/inventory", isAuthenticated, isAdmin,(req,res)=>{
+router.post("/admin", isAuthenticated, isAdmin,(req,res)=>{
    
    const{productSearch} = req.body;
 
@@ -425,7 +425,7 @@ router.post("/inventory", isAuthenticated, isAdmin,(req,res)=>{
             }
          });
 
-         res.render("products/productsInventory", {
+         res.render("products/adminDashboard", {
             title: "Products",
             heading: "Our Products",
             data: filteredProducts,
