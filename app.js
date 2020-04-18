@@ -20,7 +20,7 @@ const fileupload = require('express-fileupload');
 require('dotenv').config({path:"./config/keys.env"});
 
 //Import router objects
-const generalRoutes = require("./controllers/general");
+const adminRoutes = require("./controllers/admin");
 const productRoutes = require("./controllers/products");
 
 //Create the express app object
@@ -92,7 +92,7 @@ app.use((req,res,next)=>{
 
 
 //Maps EXPRESS TO ALL OUR ROUTER OBJECTS
-app.use("/", generalRoutes);
+app.use("/", adminRoutes);
 app.use("/products", productRoutes);
 
 // Connection method that connects mongoose to MongoDB

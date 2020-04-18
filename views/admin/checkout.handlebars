@@ -1,0 +1,62 @@
+       <link rel="stylesheet" href="/css/formBoot.css">
+     
+     <div id="checkOut" class="formUser">
+         <div class="formWrap">
+            
+            <h1>Checkout</h1>
+            
+            <form class="userForm" action="/checkout" method="POST">
+
+               {{#if first}} <br><small class="errorMessage">{{first}}</small> {{/if}}
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon">Your Total</span>
+                     </div>
+                  </div>
+                  <input class="form-control formInput" type="text" name="total" disabled placeholder="Your Total" value="{{cart.totalPrice}}">
+               </div>
+
+               {{#if first}} <br><small class="errorMessage">{{first}}</small> {{/if}}
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon">First Name</span>
+                     </div>
+                  </div>
+                  <input class="form-control formInput" type="text" name="firstName" placeholder="Your name" value="{{user.firstName}}">
+               </div>
+
+               {{#if last}} <br><small class="errorMessage">{{last}}</small>{{/if}}
+               <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon">Last Name</span>
+                     </div>
+                  </div>
+                  <input class="form-control formInput" type="text" name="lastName" placeholder="Your lastname" value="{{user.lastName}}">
+               </div>
+
+               {{#if e_mail}} <br><small class="errorMessage">{{e_mail}}</small> {{/if}}
+               <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon"><i class="fas fa-envelope"></i></span>
+                     </div>
+                  </div>
+                  <input class="form-control formInput" type="email" name="email" placeholder="Enter Email or Mobile Number" value="{{user.email}}">
+               </div>
+
+
+               
+               <div class="errosWrap">
+                  {{#each errorMessages}}
+                     <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
+                  {{/each}}
+               </div>
+
+               <button class="btn mt-1 formBtn" type="submit">Pay</button>
+            </form>
+         </div>
+      </div>
+   </div>

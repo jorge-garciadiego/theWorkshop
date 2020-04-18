@@ -6,7 +6,7 @@ const dashboardLoader = (req,res)=>{
 
    }else{
 
-      res.render("general/profile");
+      res.render("admin/profile");
 
    }
 }

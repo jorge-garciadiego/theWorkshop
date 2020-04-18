@@ -24,10 +24,34 @@ form{
    max-width: 500px;
    margin: auto;
    padding: 20px;
-   background: #F2F2F2;
+   background: #656FA6;
    border: thin #262626;
+   -webkit-box-shadow: 0 10px 6px -6px #0D0D0D;
+	-moz-box-shadow: 0 10px 6px -6px #0D0D0D;
+   box-shadow: 8px 10px 10px -5px #0D0D0D;
    margin-bottom: 50px;
    border-radius: 20px;
+}
+
+
+.sideIcon{
+   background: #363B59;
+   border: #DDDCFF;
+   color: #CFFFF1;
+}
+
+.formInput{
+   border: #DDDCFF;
+   background: #DDDCFF;
+}
+
+.formBtn{
+   background: #BDD8E8;
+   color: #262626;
+}
+
+.formBtn:hover{
+   background: #CFFFF1;
 }
 
 .errorMessage{

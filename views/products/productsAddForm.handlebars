@@ -8,38 +8,38 @@
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Name</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Name</span>
             </div>
          </div>
-         <input class="form-control" type="text" name="title" placeholder="Enter product name" value="{{actualTitle}}">
+         <input class="form-control formInput" type="text" name="title" placeholder="Enter product name" value="{{actualTitle}}">
       </div>
       {{#if eTitle}}<small class="errorMessage">{{eTitle}}</small>{{/if}}
       
       <div class="form-group">
          <label for="description">Description</label>
-         <textarea class="form-control" name="description" rows="3" placeholder="Enter Product Description">{{actualDescription}}</textarea>
+         <textarea class="form-control formInput" name="description" rows="3" placeholder="Enter Product Description">{{actualDescription}}</textarea>
       </div>
       {{#if eDescription}}<small class="errorMessage">{{eDescription}}</small> {{/if}}
 
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Artist</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Artist</span>
             </div>
          </div>
-         <input class="form-control" type="text" name="artist" placeholder="Enter Artist name" value="{{actualArtist}}">
+         <input class="form-control formInput" type="text" name="artist" placeholder="Enter Artist name" value="{{actualArtist}}">
       </div>
       {{#if eArtist}}<span class="errorMessage">{{eArtist}}</span>{{/if}}
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Category</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Category</span>
             </div>
          </div>
-         <select class="form-control" name="category" id="category">
+         <select class="form-control formInput" name="category" id="category">
             <option value="Accesories" {{ifOption actualCat "Accesories"}}>Accesories</option>
             <option value="Boutique" {{ifOption actualCat "Boutique"}}>Boutique</option>
             <option value="Decor" {{ifOption actualCat "Decor"}}>Decor</option>
@@ -51,35 +51,35 @@
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Price</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Price</span>
             </div>
          </div>
-         <input class="form-control" type="text" name="price" placeholder="Enter the price" value="{{actualPrice}}">
+         <input class="form-control formInput" type="text" name="price" placeholder="Enter the price" value="{{actualPrice}}">
       </div>
          {{#if ePrice}}<span class="errorMessage">{{ePrice}}</span>{{/if}}
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Stock</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Stock</span>
             </div>
          </div>
-         <input class="form-control" type="text" name="stock" placeholder="Enter the stock" value="{{actualStock}}">
+         <input class="form-control formInput" type="text" name="stock" placeholder="Enter the stock" value="{{actualStock}}">
       </div>
          {{#if eStock}}<small class="errorMessage">{{eStock}}</small>{{/if}}
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
+            <div class="input-group-text sideIcon">
                <input name="bestSeller" type="checkbox" value="true" {{ifCheck actualBestSeller}}> 
             </div>
          </div>
-         <input type="text" class="form-control" value="Best Seller" disabled>
+         <input type="text" class="form-control formInput" value="Best Seller" disabled>
       </div>
 
       <div class="custom-file">
-         <label class="custom-file-label" for="productPic">Product Picture URL</label>
+         <label class="custom-file-label formInput" for="productPic">Product Picture URL</label>
          <input class="custom-file-input" type="file" name="productPic">
       </div>
     
@@ -89,6 +89,6 @@
             {{/each}}
          </div>
 
-      <button class="btn btn-primary mt-1 btn-block" type="submit">Submit</button>
+      <button class="btn formBtn mt-1 btn-block" type="submit">Submit</button>
    </form>
 </div>

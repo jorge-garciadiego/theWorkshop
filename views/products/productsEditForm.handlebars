@@ -6,34 +6,34 @@
    <form method="POST" action="/products/update/{{_id}}?method=PUT">
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Name</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Name</span>
             </div>
          </div>
-         <input class="form-control" type="text" name="title" placeholder="Enter product name" value="{{title}}">
+         <input class="form-control formInput" type="text" name="title" placeholder="Enter product name" value="{{title}}">
       </div>
 
       <div class="form-group">
          <label for="description">Description</label>
-         <textarea class="form-control" name="description" rows="3" placeholder="Enter Product Description">{{description}}</textarea>
+         <textarea class="form-control formInput" name="description" rows="3" placeholder="Enter Product Description">{{description}}</textarea>
       </div>
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Artist</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Artist</span>
             </div>
          </div>
-         <input class="form-control" type="text" name="artist" placeholder="Enter Artist name" value="{{artist}}">
+         <input class="form-control formInput" type="text" name="artist" placeholder="Enter Artist name" value="{{artist}}">
       </div>
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Category</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Category</span>
             </div>
          </div>
-         <select class="form-control" name="category" id="category">
+         <select class="form-control formInput" name="category" id="category">
             <option value="accesories" {{ifOption category "accesories"}}>Accesories</option>
             <option value="boutique" {{ifOption category "boutique"}}>Boutique</option>
             <option value="decor" {{ifOption category "decor"}}>Decor</option>
@@ -45,29 +45,29 @@
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
+            <div class="input-group-text sideIcon">
                <input name="bestSeller" type="checkbox" value="true" {{ifCheck bestSeller}}> 
             </div>
          </div>
-         <input type="text" class="form-control" value="Best Seller" disabled>
+         <input type="text" class="form-control formInput" value="Best Seller" disabled>
       </div>
 
        <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Price</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Price</span>
             </div>
          </div>
-         <input class="form-control" type="text" name="price" placeholder="Enter the price" value="{{price}}">
+         <input class="form-control formInput" type="text" name="price" placeholder="Enter the price" value="{{price}}">
       </div>
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
-            <div class="input-group-text">
-               <span>Stock</span>
+            <div class="input-group-text sideIcon">
+               <span class="sideIcon">Stock</span>
             </div>
          </div>
-         <input class="form-control" type="text" name="stock" placeholder="Enter the stock" value="{{stock}}">
+         <input class="form-control formInput" type="text" name="stock" placeholder="Enter the stock" value="{{stock}}">
       </div>
 
       <!--
@@ -76,7 +76,7 @@
          <input class="custom-file-input" type="file" name="productPic">
       </div>
       -->
-      <button class="btn btn-primary mt-1" type="submit">Submit</button>
+      <button class="btn formBtn mt-1" type="submit">Submit</button>
    </form>
    
 </section>

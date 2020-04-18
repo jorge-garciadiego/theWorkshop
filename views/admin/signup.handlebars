@@ -3,77 +3,77 @@
 <body>
    <div class="signUpWrapper">
 
-      {{#each errors}}
-         <div>{{this}}</div>
-      {{/each}}
-
       <div id="signUpForm" class="formUser">
          <div class="formWrap">
             <form class="userForm" action="/signup" method="POST" enctype="multipart/form-data">
-                  <h2 class="formTitle">Sign Up Here</h2>
 
                {{#if first}} <br><small class="errorMessage">{{first}}</small> {{/if}}
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                     <div class="input-group-text">
-                        <span>First Name</span>
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon">First Name</span>
                      </div>
                   </div>
-                  <input class="form-control" type="text" name="firstName" placeholder="Your name" value="{{actualFirst}}">
+                  <input class="form-control formInput" type="text" name="firstName" placeholder="Your name" value="{{actualFirst}}">
                </div>
 
                {{#if last}} <br><small class="errorMessage">{{last}}</small>{{/if}}
                <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                     <div class="input-group-text">
-                        <span>Last Name</span>
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon">Last Name</span>
                      </div>
                   </div>
-                  <input class="form-control" type="text" name="lastName" placeholder="Your lastname" value="{{actualLast}}">
+                  <input class="form-control formInput" type="text" name="lastName" placeholder="Your lastname" value="{{actualLast}}">
                </div>
 
                {{#if e_mail}} <br><small class="errorMessage">{{e_mail}}</small> {{/if}}
                <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                     <div class="input-group-text">
-                        <span><i class="fas fa-envelope"></i></span>
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon"><i class="fas fa-envelope"></i></span>
                      </div>
                   </div>
-                  <input class="form-control" type="text" name="mailPhone" placeholder="Enter Email or Mobile Number" value="{{actualMail}}">
+                  <input class="form-control formInput" type="text" name="mailPhone" placeholder="Enter Email or Mobile Number" value="{{actualMail}}">
                </div>
 
                {{#if p_pass}} <br><span class="errorMessage">{{p_pass}}</span> {{/if}}
                <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                     <div class="input-group-text">
-                        <span><i class="fas fa-key"></i></span>
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon"><i class="fas fa-key"></i></span>
                      </div>
                   </div>
-                  <input class="form-control" type="password" name="password" placeholder="Enter Password">
+                  <input class="form-control formInput" type="password" name="password" placeholder="Enter Password">
                </div>
 
                {{#if p_repass}} <br><span class="errorMessage">{{p_repass}}</span> {{/if}}
                <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                     <div class="input-group-text">
-                        <span><i class="fas fa-key"></i></span>
+                     <div class="input-group-text sideIcon">
+                        <span class="sideIcon"><i class="fas fa-key"></i></span>
                      </div>
                   </div>
-                  <input class="form-control" type="password" name="rePassword" placeholder="Re-enter Password">
+                  <input class="form-control formInput" type="password" name="rePassword" placeholder="Re-enter Password">
                </div>
 
                 <div class="custom-file">
-                  <label class="custom-file-label" for="picture">Product Picture URL</label>
-                  <input class="custom-file-input" type="file" name="picture">
+                  <label class="custom-file-label formInput" for="picture">Profile Picture URL</label>
+                  <input class="custom-file-input formInput" type="file" name="picture">
                </div>
                
                <div class="errosWrap">
                   {{#each errorMessages}}
                      <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
                   {{/each}}
+
+                  <!-- Errors from the server side -->
+                  {{#each errors}}
+                     <div class="errorMsg">{{this}}</div>
+                  {{/each}}
                </div>
 
-               <button class="btn btn-primary mt-1" type="submit">Join</button>
+               <button class="btn mt-1 formBtn" type="submit">Join</button>
             </form>
          </div>
       </div>

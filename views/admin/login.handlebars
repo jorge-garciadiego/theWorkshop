@@ -3,44 +3,43 @@
 
 <body>
 
-   {{#each errors}}
-      <div>{{this}}</div>
-   {{/each}}
-
    <div class="loginWrapper">
        <div id="loginForm" class="formUser">
             <div class="formWrap">
                <form class="userForm" action="/login" method="POST">
 
-                  <h2 class="formTitle">Login</h2>
-
                   {{#if e_mail}} <br><span class="errorMessage">{{e_mail}}</span> {{/if}}
                   <div class="input-group mb-3">
                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                           <span><i class="fas fa-envelope"></i></span>
+                        <div class="sideIcon input-group-text">
+                           <span class="sideIcon"><i class="fas fa-envelope"></i></span>
                         </div>
                      </div>
-                     <input class="form-control" type="email" name="emailPhone" placeholder="Your email" value="{{actualMail}}">
+                     <input class="formInput form-control" type="email" name="emailPhone" placeholder="Your email" value="{{actualMail}}">
                   </div>
 
                   {{#if p_pass}} <br><span class="errorMessage">{{p_pass}}</span> {{/if}}
                   <div class="input-group mb-3">
                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                           <span><i class="fas fa-key"></i></span>
+                        <div class="sideIcon input-group-text">
+                           <span class="sideIcon"><i class="fas fa-key"></i></span>
                         </div>
                      </div>
-                     <input class="form-control" type="password" name="loginPass" placeholder="Password">
+                     <input class="formInput form-control" type="password" name="loginPass" placeholder="Password">
                   </div>                
 
                   <div class="errosWrap">
                      {{#each errorMessages}}
                         <div class="errorMsg" style={{this.colour}}>{{this.description}}</div>
                      {{/each}}
+
+                     <!-- Errors from the serverside -->
+                     {{#each errors}}
+                        <div class="errorMsg">{{this}}</div>
+                     {{/each}}
                   </div>
 
-                  <button class="btn btn-primary mt-1" type="submit">Login</button>
+                  <button class="btn mt-1 formBtn" type="submit">Login</button>
                   
                </form>
             </div>

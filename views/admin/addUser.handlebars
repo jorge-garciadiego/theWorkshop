@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/formBoot.css">
+
+<body>
+
+   <div class="userWrapper">
+       <div id="userForm" class="formUser">
+            <div class="formWrap">
+               <form class="userForm" action="/profile" method="POST">
+
+                  {{#if e_mail}} <br><span class="errorMessage">{{e_mail}}</span> {{/if}}
+                  <div class="input-group mb-3">
+                     <div class="input-group-prepend">
+                        <div class="sideIcon input-group-text">
+                           <span class="sideIcon"><i class="fas fa-envelope"></i></span>
+                        </div>
+                     </div>
+                     <input class="formInput form-control" type="email" name="emailPhone" placeholder="Your email" value="{{actualMail}}">
+                  </div>
+
+                  <button class="btn mt-1 formBtn" type="submit">Login</button>
+                  
+               </form>
+            </div>
+      </div>
+   </div>
+</body>
+</html>
