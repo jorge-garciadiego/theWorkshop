@@ -86,11 +86,15 @@ img{
    transition: all .3s;
 }
 
+.bsTitle{
+   font-size: 16px;
+}
+
 .boxContent{
    position: absolute;
    height: 50%;
    left: 0;
-   bottom: -30px;
+   bottom: -45px;
    width: 100%;
    font-family: 'Architects Daughter', cursive;
    font-size: 13px;

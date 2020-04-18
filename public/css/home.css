@@ -137,6 +137,13 @@ body{
 }
 
 /* Categories Grid*/
+.titleName{
+   font-size: 15px;
+}
+
+.titleCat{
+   font-size: 15px;
+}
 
 .categoriesCont{
    margin: auto;
