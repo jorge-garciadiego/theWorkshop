@@ -102,6 +102,10 @@ body{
    font-family: 'Pacifico', sans-serif;
 }
 
+.cartBadge{
+   background: #D9A3A3;
+}
+
 /* Titles*/
 
 .title{
@@ -134,19 +138,17 @@ body{
 
 /* Categories Grid*/
 
-.categories{
-   max-width: 1000px;
+.categoriesCont{
    margin: auto;
+   max-width: 800px;
 }
 
 .boxWrapper {
    padding-top: 10px;
    justify-content: center;
-   
- 
-   
    list-style: none;
    text-align: center;
+   margin: auto;
  }
  
  .boxWrapper::after{
@@ -245,11 +247,5 @@ body{
    .icon{
       display: none;
    }
-
-   .categories{
-      max-width: 250px;
-      margin-bottom: 50px;
-   }
-
 
 }

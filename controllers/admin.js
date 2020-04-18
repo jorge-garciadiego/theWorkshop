@@ -551,7 +551,6 @@ router.get('/cart', (req,res, next)=>{
 
    })
 
-
    router.post("/checkout", (req, res)=>{
       const errors = [];
    
@@ -648,6 +647,17 @@ router.get('/cart', (req,res, next)=>{
 
       }
    })
+
+
+   router.get('/cancel', (req,res)=>{
+      if(!req.session.cart){
+         return res.redirect('/products/list');
+      }
+
+         req.session.cart = null;            
+         res.redirect("/");
+   })
+
    
       router.get("/usersDashboard", isAuthenticated, isAdmin,(req, res)=>{
          const{productSearch} = req.body;
@@ -720,8 +730,6 @@ router.post("/usersDashboard", isAuthenticated, isAdmin, (req, res)=>{
    
   
 });
-   
-
 
 module.exports = router;
 

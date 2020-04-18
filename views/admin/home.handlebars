@@ -17,7 +17,7 @@
             <li class="col-sm-2 icon"><a href=""><i class="fas fa-brain"></i></a></li>
             
             <li class="col-sm-2 iconMenu to" id="toCart" data='["Shpping Cart"]'>
-               <a  href="/cart"><i class="fas fa-shopping-cart"></i><strong class="badge badge-primary badge-pill">{{cart.totalQty}}</strong></a> 
+               <a  href="/cart"><i class="fas fa-shopping-cart"></i><strong class="badge badge-primary badge-pill cartBadge">{{cart.totalQty}}</strong></a> 
             </li>
             
             <li class="col-sm-2 offset-sm-1 icon"><a href=""><i class="fas fa-lightbulb"></i></a></li>
@@ -90,24 +90,20 @@
          <h2>Categories</h2>
       </div>
 
-      <section class="categories">
-         <ul class="row boxWrapper">
-            {{#each categories}}
-               <li>
-                  <div class="box img-1" style="background:{{colour}}">
-                     <a href="#">
+      <section class="row categories mb-4 justify-content-center categoriesCont"> 
+            {{#each categories}}         
+                  <div class="col-sm-5 box img-1 boxWrapper" style="background:{{colour}}">
+                     <a href="/products/list">
                         <div class="info">
                            <h3 class="name">{{title}}</h3>
                            <p class="catDesc">{{description}}</p>
                         </div>
                      </a>
                   </div>
-               </li>
-            {{/each}}
-         </ul>
+               
+            {{/each}} 
       </section>
 
-        <section>
 
    
    <script src="/js/mainNav.js"></script>
