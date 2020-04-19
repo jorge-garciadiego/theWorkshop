@@ -34,19 +34,17 @@
             </div>
          </div>
          <select class="form-control formInput" name="category" id="category">
-            <option value="accesories" {{ifOption category "accesories"}}>Accesories</option>
-            <option value="boutique" {{ifOption category "boutique"}}>Boutique</option>
-            <option value="decor" {{ifOption category "decor"}}>Decor</option>
-            <option value="home" {{ifOption category "home"}}>Home</option>
-            <option value="decor" {{ifOption category "Food & Health"}}>Food & Health</option>
-            <option value="home" {{ifOption category "Fitness"}}>Fitness</option>
+            <option value="Accesories" {{ifOption category "Accesories"}}>Accesories</option>
+            <option value="Boutique" {{ifOption category "Boutique"}}>Boutique</option>
+            <option value="Decor" {{ifOption category "Decor"}}>Decor</option>
+            <option value="Home" {{ifOption category "Home"}}>Home</option>
          </select>
       </div>
 
       <div class="input-group mb-3">
          <div class="input-group-prepend">
             <div class="input-group-text sideIcon">
-               <input name="bestSeller" type="checkbox" value="true" {{ifCheck bestSeller}}> 
+               <input name="bestSeller" type="checkbox" value="true" {{ifCheck bestSeller}}>
             </div>
          </div>
          <input type="text" class="form-control formInput" value="Best Seller" disabled>
