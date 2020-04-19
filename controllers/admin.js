@@ -564,6 +564,17 @@ router.get('/cart', (req,res, next)=>{
             }
          
          const user = new orderModel(newOrder);
+         
+         let cart = new Cart(req.session.cart);
+         const itemsMess = cart.generateArray();
+         console.log(itemsMess);
+
+         let itemsList = `Thank you for choosing the Workshop. <br> Your items: </p><br>`;
+
+         itemsMess.forEach((items)=>{
+            itemsList+= `<p> ${items.item.title} Price: ${items.item.price}: <br> Summary: <br> Items: ${items.qty}  Price per item ${items.price}`
+         });
+         itemsList+= `<hr> Total purchased: ${cart.totalPrice} for ${cart.totalQty} items <br>` ;
             
             
          user.save()
@@ -579,6 +590,8 @@ router.get('/cart', (req,res, next)=>{
             subject: 'Confirmation Order',
             html: 
             `Dear ${firstName} your purchase is complete <br>
+
+               ${itemsList}
             see you soon at >the Workshop<
             www.jorgegarciadiego.com
             `,
