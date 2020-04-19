@@ -336,25 +336,7 @@ router.put("/update/:id", isAuthenticated, isAdmin, (req,res)=>{
          res.redirect("/products/admin")
       })
       .catch(err=>`Error updating the document into the database ${err}`)
-         /*
-         .then((product)=>{
-         req.files.productPic.name = `prod_pic${product._id}${path.parse(req.files.productPic.name).name}${path.parse(req.files.productPic.name).ext}`;
 
-         req.files.productPic.mv(`public/uploads/${req.files.productPic.name}`)
-         .then(()=>{
-
-            productModel.update({_id:product._id},{
-               productPic: req.files.productPic.name
-            })
-            .then(()=>{
-               res.redirect("/products/list")
-            })
-            
-         })
-         }).catch(err=>{
-            console.log(`Error entring into de data ${err}`);
-         })
-         */
 })
 
 router.delete("/delete/:id", isAuthenticated, isAdmin, (req,res)=>{
