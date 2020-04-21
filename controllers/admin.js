@@ -572,9 +572,13 @@ router.get('/cart', (req,res, next)=>{
          let itemsList = `Thank you for choosing the Workshop. <br> Your items: </p><br>`;
 
          itemsMess.forEach((items)=>{
-            itemsList+= `<p> ${items.item.title} Price: ${items.item.price}: <br> Summary: <br> Items: ${items.qty}  Price per item ${items.price}`
+            itemsList+= `<p> ${items.item.title} Price: $${items.item.price}
+            <br> Summary: 
+            <br> Items: ${items.qty} 
+            <br> total: $${items.item.price}`
          });
-         itemsList+= `<hr> Total purchased: ${cart.totalPrice} for ${cart.totalQty} items <br>` ;
+         itemsList+= `<hr> Total purchased: $${cart.totalPrice} <br>
+         Items: ${cart.totalQty} <br>` ;
             
             
          user.save()
